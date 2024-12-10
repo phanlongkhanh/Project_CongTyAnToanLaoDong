@@ -21,23 +21,22 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Lặp qua danh sách sản phẩm -->
             @foreach ($posts as $item)
                 <tr>
-                    <th scope="row" class="text-center">{{ $item->id }}</th>
-                    <td class="text-left">{{ \Illuminate\Support\Str::limit($item->title, 30, '...') }}</td>
+                    <th style="line-height: 150px" scope="row" class="text-center text-nowrap">{{ $item->id }}</th>
+                    <td style="line-height: 150px" class="text-left text-nowrap">{{ \Illuminate\Support\Str::limit($item->title, 30, '...') }}</td>
                     <td class="text-center"><img src="images/<?= $item->image ?>" alt="" width="200px"
                             height="150px"></td>
-                    <td class="text-left">
+                    <td style="line-height: 150px" class="text-left">
                         @if ($item->categoryPost)
                             {{ $item->categoryPost->name }}
                         @else
                             Chưa có danh mục
                         @endif
                     </td>
-                    <td class="text-left">{{ $item->keywords }}</td>
-                    <td class="text-center">Active</td>
-                    <td class="text-center">
+                    <td style="line-height: 150px" class="text-left text-nowrap">{{ \Illuminate\Support\Str::limit($item->keywords, 20, '...') }}</td>
+                    <td style="line-height: 150px" class="text-center text-nowrap">Active</td>
+                    <td style="line-height: 150px" class="text-center text-nowrap">
                         <a href="#" class="btn btn-warning btn-sm">
                             <i class="fas fa-edit"></i> Sửa
                         </a>
