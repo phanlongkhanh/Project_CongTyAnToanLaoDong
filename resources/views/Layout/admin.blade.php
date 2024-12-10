@@ -18,7 +18,7 @@
     <div class="d-flex" id="wrapper">
         <div class="bg-dark text-white" id="sidebar-wrapper">
             <div class="sidebar-heading">
-                <h4>Quản Trị</h4>
+                <div class="bg-danger text-center"><h4>Quản Trị</h4></div>
             </div>
             <div class="list-group list-group-flush">
                 <!-- Dashboard -->
@@ -27,12 +27,12 @@
                 </a>
                 <!-- Danh mục sản phẩm -->
                 <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <i class="fas fa-list"></i> Danh mục sản phẩm
+                    <i class="fas fa-list"></i> Danh Mục Sản Phẩm
                 </a>
                 <!-- Quản lý Sản phẩm -->
                 <a href="{{ route('index-product') }}"
                     class="list-group-item list-group-item-action bg-dark text-white">
-                    <i class="fas fa-cogs"></i> Quản lý Sản Phẩm
+                    <i class="fas fa-cogs"></i> Quản Lý Sản Phẩm
                 </a>
                 <!-- Đơn hàng -->
                 <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
@@ -44,7 +44,7 @@
                     <i class="fas fa-th-list"></i> Danh mục bài viết
                 </a>
                 <!-- Bài viết -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <a href="{{route('index-post')}}" class="list-group-item list-group-item-action bg-dark text-white">
                     <i class="fas fa-newspaper"></i> Bài viết
                 </a>
                 <!-- Người dùng -->
