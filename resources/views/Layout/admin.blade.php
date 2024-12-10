@@ -10,6 +10,7 @@
     <!-- Liên kết Font Awesome cho icon -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/dashboard/dashboard.css') }}">
+    <link rel="shortcut icon" href="{{ asset('homepage-images/p5.png') }}" type="image/x-icon">
 </head>
 
 <body>
@@ -40,7 +41,7 @@
                 </a>
 
                 <!-- Danh mục bài viết -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <a href="{{route('index-category-post')}}" class="list-group-item list-group-item-action bg-dark text-white">
                     <i class="fas fa-th-list"></i> Danh mục bài viết
                 </a>
                 <!-- Bài viết -->

@@ -9,10 +9,11 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/master/master.css') }}">
+    <link rel="shortcut icon" href="{{ asset('homepage-images/p5.png') }}" type="image/x-icon">
+
 </head>
 
 <body>
-
 
     <div class="navbar-item">
         <div class="text"> Email: PhanLongKhanh@gmail.com</div>
