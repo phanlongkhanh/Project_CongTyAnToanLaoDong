@@ -19,41 +19,46 @@
     <div class="d-flex" id="wrapper">
         <div class="bg-dark text-white" id="sidebar-wrapper">
             <div class="sidebar-heading">
-                <div class="bg-danger text-center"><h4>Quản Trị</h4></div>
+                <div class="bg-danger text-center ">
+                    <h4>Quản Trị</h4>
+                </div>
             </div>
             <div class="list-group list-group-flush">
                 <!-- Dashboard -->
-                <a href="{{route('index-dashboard')}}" class="list-group-item list-group-item-action bg-dark text-white">
+                <a href="{{ route('index-dashboard') }}"
+                    class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
                 <!-- Danh mục sản phẩm -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-list"></i> Danh Mục Sản Phẩm
                 </a>
                 <!-- Quản lý Sản phẩm -->
                 <a href="{{ route('index-product') }}"
-                    class="list-group-item list-group-item-action bg-dark text-white">
+                    class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-cogs"></i> Quản Lý Sản Phẩm
                 </a>
                 <!-- Đơn hàng -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-box"></i> Đơn hàng
                 </a>
 
                 <!-- Danh mục bài viết -->
-                <a href="{{route('index-category-post')}}" class="list-group-item list-group-item-action bg-dark text-white">
+                <a href="{{ route('index-category-post') }}"
+                    class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-th-list"></i> Danh mục bài viết
                 </a>
                 <!-- Bài viết -->
-                <a href="{{route('index-post')}}" class="list-group-item list-group-item-action bg-dark text-white">
+                <a href="{{ route('index-post') }}"
+                    class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-newspaper"></i> Bài viết
                 </a>
                 <!-- Người dùng -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-users"></i> Người dùng
                 </a>
                 <!-- Cài đặt -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-cogs"></i> Cài đặt
                 </a>
 
@@ -107,6 +112,7 @@
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
+            
         </script>
 
 </body>
