@@ -28,7 +28,6 @@ class ProductController extends Controller
         $users = Auth::check() ? Auth::user()->name : null;
         return view('Admin.product.create', compact('users'));
     }
-
     public function update()
     {
         if (!Auth::check()) {

@@ -48,3 +48,6 @@ document.getElementById('title').addEventListener('input', function () {
     var slug = convertToSlug(title);
     document.getElementById('slug').value = slug;
 });
+
+
+

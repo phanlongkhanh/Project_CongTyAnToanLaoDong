@@ -8,6 +8,13 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\CategoryPost;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class PostController extends Controller
 {
@@ -64,6 +71,23 @@ class PostController extends Controller
         return redirect()->route('index-post')->with('success', 'Bài viết đã được thêm thành công!');
     }
 
+    public function edit($encryptedId)
+    {
+        try {
+            $id = Crypt::decrypt($encryptedId);
+        } catch (DecryptException $e) {
+            return redirect()->route('index-post')->with('error', 'Không tìm thấy bài viết với ID này.');
+        }
+        $post = Post::find($id);
+        $categories_posts = CategoryPost::all();
+        $users = Auth::check() ? Auth::user()->name : null;
+        if (!$post) {
+            return redirect()->route('index-post')->with('error', 'Không tìm thấy bài viết với ID này.');
+        }
+
+        return view('Admin.post.update', compact('post','users','categories_posts'));
+    }
+    
 
     public function Active($id)
     {

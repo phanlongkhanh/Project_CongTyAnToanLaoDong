@@ -44,7 +44,8 @@ Route::prefix('post')->group(function () {
     Route::get('/', action: [PostController::class, 'index'])->name('index-post');
     Route::get('/create', action: [PostController::class, 'create'])->name('create-post');
     Route::post('/add', [PostController::class, 'store'])->name('store-post');
-    Route::get('/{id}', [PostController::class, 'Active'])->name('active-post');
+    Route::get('active/{id}', [PostController::class, 'Active'])->name('active-post');
+    Route::get('/{id}', [PostController::class, 'edit'])->name('edit-post');
 });
 
 
