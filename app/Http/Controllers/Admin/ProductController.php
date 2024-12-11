@@ -9,18 +9,33 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
+        }
+
         $users = Auth::check() ? Auth::user()->name : null;
-        return view('Admin.product.index',compact('users'));
+        return view('Admin.product.index', compact('users'));
     }
 
-    public function create(){
+    public function create()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
+        }
+
         $users = Auth::check() ? Auth::user()->name : null;
-        return view('Admin.product.create',compact('users'));
+        return view('Admin.product.create', compact('users'));
     }
 
-    public function update(){
+    public function update()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
+        }
+
         $users = Auth::check() ? Auth::user()->name : null;
-        return view('Admin.product.update',compact('users'));
+        return view('Admin.product.update', compact('users'));
     }
 }
