@@ -14,6 +14,10 @@ class CategoryPostController extends Controller
 {
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
+        }
+
         $users = Auth::check() ? Auth::user()->name : null;
         $category_posts = CategoryPost::all();
         return view('Admin.category.post.index', compact('category_posts', 'users'));
@@ -21,6 +25,10 @@ class CategoryPostController extends Controller
 
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
+        }
+        
         $users = Auth::check() ? Auth::user()->name : null;
         return view('Admin.category.post.create', compact('users'));
     }

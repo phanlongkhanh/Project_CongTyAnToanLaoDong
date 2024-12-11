@@ -13,6 +13,10 @@ class PostController extends Controller
 {
     public function index()
     {
+        if (!Auth::check()) {
+            return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
+        }
+        
         $users = Auth::check() ? Auth::user()->name : null;
         $posts = Post::with('categoryPost')->get();
         return view('Admin.post.index', compact('posts', 'users'));

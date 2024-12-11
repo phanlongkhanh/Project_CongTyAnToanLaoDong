@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label for="slug">Đường dẫn (Slug)</label>
                 <input type="text" id="slug" name="slug" class="form-control"
-                    placeholder="Nhập đường dẫn thân thiện" required readonly>
+                    placeholder="đường dẫn thân thiện" required readonly>
             </div>
 
             <div class="form-group">
@@ -42,7 +42,6 @@
                 <textarea id="description" name="description" class="form-control" placeholder="Nhập mô tả không quá 200 từ !" required></textarea>
             </div>
 
-            <!-- Thêm Danh Mục Bài Viết -->
             <div class="form-group">
                 <label for="id_category_post">Danh Mục</label>
                 <select id="id_category_post" name="id_category_post"class="form-control" required>
@@ -53,7 +52,6 @@
                 </select>
             </div>
 
-            <!-- Nội Dung -->
             <div class="form-group">
                 <label>Nội dung</label>
                 <textarea class="form-control" id="editor_js" name="content" rows="3"
