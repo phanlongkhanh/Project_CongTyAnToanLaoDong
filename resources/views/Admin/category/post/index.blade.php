@@ -32,7 +32,7 @@
                         <!-- Sửa danh mục -->
                         <a href="#" class="btn btn-warning btn-sm">Sửa</a>
                         <!-- Xóa danh mục -->
-                        <form action="#" method="POST" style="display:inline;">
+                        <form action="{{ route('destroy-category-post', ['id' => $item->id]) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa không?')">Xóa</button>

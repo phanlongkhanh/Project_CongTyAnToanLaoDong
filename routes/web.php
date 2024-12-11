@@ -8,12 +8,22 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\CategoryPostController;
+use App\Http\Controllers\Admin\AdminController;
+
 
 
 
 
 Route::get('/admin-login', [LoginController::class, 'index']);
 Route::get('/', [HomepageController::class, 'index']);
+
+
+
+Route::prefix('login')->group(function () {
+    Route::get('/', [LoginController::class, 'index'])->name('index-login');
+    Route::get('/store', [LoginController::class, 'login'])->name('store-login');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
 
 Route::prefix('homepage')->group(function () {
     Route::get('/', [HomepageController::class, 'index'])->name('index-homepage');
@@ -34,6 +44,7 @@ Route::prefix('post')->group(function () {
     Route::get('/', action: [PostController::class, 'index'])->name('index-post');
     Route::get('/create', action: [PostController::class, 'create'])->name('create-post');
     Route::post('/add', [PostController::class, 'store'])->name('store-post');
+    Route::get('/{id}', [PostController::class, 'Active'])->name('active-post');
 });
 
 
@@ -41,4 +52,5 @@ Route::prefix('category-post')->group(function () {
     Route::get('/', [CategoryPostController::class, 'index'])->name('index-category-post');
     Route::get('/create', [CategoryPostController::class, 'create'])->name('create-category-post');
     Route::post('/add', [CategoryPostController::class, 'store'])->name('store-category-post');
+    Route::delete('/{id}', [CategoryPostController::class, 'destroy'])->name('destroy-category-post');
 });

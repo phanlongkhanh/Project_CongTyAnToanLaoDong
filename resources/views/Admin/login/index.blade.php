@@ -16,14 +16,15 @@
     <!-- Login Form -->
     <div class="login-container">
         <h2 class="text-center text-white mb-4">Login</h2>
-        <form action="{{route('index-dashboard')}}">
+        <form action="{{ route('store-login') }}" method="GET">
+            @csrf
             <div class="mb-3">
-                <label for="email" class="form-label">Tài Khoản</label>
-                <input type="email" class="form-control" id="email" required>
+                <label for="name" class="form-label">Tài Khoản</label>
+                <input type="text" class="form-control" id="name" name="name" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Mật Khẩu</label>
-                <input type="password" class="form-control" id="password" required>
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="d-grid">
                 <button type="submit" class="btn btn-custom">Đăng Nhập</button>

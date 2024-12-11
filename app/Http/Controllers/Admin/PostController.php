@@ -13,13 +13,15 @@ class PostController extends Controller
 {
     public function index()
     {
+        $users = Auth::check() ? Auth::user()->name : null;
         $posts = Post::with('categoryPost')->get();
-        return view('Admin.post.index', compact('posts'));
+        return view('Admin.post.index', compact('posts', 'users'));
     }
     public function create()
     {
+        $users = Auth::check() ? Auth::user()->name : null;
         $categories = CategoryPost::all();
-        return view('Admin.post.create', compact('categories'));
+        return view('Admin.post.create', compact('categories', 'users'));
     }
 
     public function store(Request $request)
@@ -33,8 +35,8 @@ class PostController extends Controller
             'content' => 'required|string',
             'id_category_post' => 'nullable|exists:category_post,id',
         ]);
-        
-     
+
+
         $imagePath = null;
         if ($request->hasFile('image')) {
             $image = $request->file('image');
@@ -43,7 +45,7 @@ class PostController extends Controller
             $imagePath = $imageName;
         }
 
-        $categoryId = $validated['id_category_post'] ?? null; // Nếu không có sẽ trả về null
+        $categoryId = $validated['id_category_post'] ?? null;
 
         Post::create([
             'title' => $validated['title'],
@@ -56,6 +58,15 @@ class PostController extends Controller
         ]);
 
         return redirect()->route('index-post')->with('success', 'Bài viết đã được thêm thành công!');
+    }
+
+
+    public function Active($id)
+    {
+        $posts = Post::findOrFail($id);
+        $posts->checkactive = !$posts->checkactive;
+        $posts->save();
+        return redirect()->route('index-post')->with('success', 'Trạng thái đã được cập nhật thành công.');
     }
 
 }

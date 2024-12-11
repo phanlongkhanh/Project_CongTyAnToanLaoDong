@@ -11,7 +11,7 @@ class Post extends Model
 
     protected $table = 'post';
 
-    protected $fillable = ['title', 'keywords', 'slug', 'image', 'description', 'content', 'id_category_post'];
+    protected $fillable = ['title','checkactive','keywords', 'slug', 'image', 'description', 'content', 'id_category_post'];
 
     public function user()
     {
