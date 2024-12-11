@@ -14,17 +14,22 @@
             @csrf
             <div class="form-group">
                 <label for="title">Tiêu đề (Title)</label>
-                <input type="text" id="title" name="title" class="form-control" placeholder="Nhập tiêu đề bài viết" required>
+                <input type="text" id="title" name="title" class="form-control" placeholder="Nhập tiêu đề bài viết"
+                    required>
             </div>
+
 
             <div class="form-group">
                 <label for="keywords">Từ khóa SEO (Keywords)</label>
-                <input type="text" id="keywords" name="keywords" class="form-control" placeholder="Nhập từ khóa, cách nhau bởi dấu phẩy" required>
+                <input type="text" id="keywords" name="keywords" class="form-control"
+                    placeholder="Nhập từ khóa, cách nhau bởi dấu phẩy" required>
+                <div id="keywords-container" class="keywords-container"></div>
             </div>
 
             <div class="form-group">
                 <label for="slug">Đường dẫn (Slug)</label>
-                <input type="text" id="slug" name="slug" class="form-control" placeholder="Nhập đường dẫn thân thiện" required>
+                <input type="text" id="slug" name="slug" class="form-control"
+                    placeholder="Nhập đường dẫn thân thiện" required readonly>
             </div>
 
             <div class="form-group">
@@ -42,7 +47,7 @@
                 <label for="id_category_post">Danh Mục</label>
                 <select id="id_category_post" name="id_category_post"class="form-control" required>
                     <option value="">Chọn Danh Mục</option>
-                    @foreach($categories as $category)
+                    @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
@@ -51,7 +56,8 @@
             <!-- Nội Dung -->
             <div class="form-group">
                 <label>Nội dung</label>
-                <textarea class="form-control" id="editor_js" name="content" rows="3" placeholder="Viết nội dung chi tiết tại đây ..."></textarea>
+                <textarea class="form-control" id="editor_js" name="content" rows="3"
+                    placeholder="Viết nội dung chi tiết tại đây ..."></textarea>
             </div>
 
             <div class="col-md-12">
@@ -67,7 +73,10 @@
         </form>
     </div>
 
+    <link rel="stylesheet" href="{{ asset('css/post/post.css') }}">
     <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('jss/post/post.js') }}"></script>
+
     <script type="text/javascript">
         var options = {
             filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
@@ -77,4 +86,5 @@
         };
         CKEDITOR.replace('editor_js', options);
     </script>
+
 @endsection

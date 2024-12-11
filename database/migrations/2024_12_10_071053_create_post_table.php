@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable()->comment('Hình ảnh');
             $table->text('description')->comment('Mô tả'); 
             $table->longText('content')->comment('Nội dung');
+            $table->boolean('checkactive')->default(true)->comment('Check hoạt động');
             $table->unsignedBigInteger('id_category_post')->comment('ID Danh Mục Bài Viết');
             $table->timestamps();
         });

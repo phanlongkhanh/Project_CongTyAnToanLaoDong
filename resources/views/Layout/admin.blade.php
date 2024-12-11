@@ -71,24 +71,28 @@
                 <button class="btn btn-primary" id="menu-toggle">
                     <i class="fas fa-bars"></i> Menu
                 </button>
-
-                <!-- Tài khoản và Logout -->
                 <div class="ml-auto">
                     <ul class="navbar-nav">
                         <!-- Tài khoản người dùng -->
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <i class="fas fa-user"></i> Tài khoản
+                                <i class="fas fa-user"></i>
+                                @if ($users)
+                                    <span>{{ $users }}</span>
+                                @else
+                                    <a href="{{ route('login') }}">
+                                        <span>Login</span>
+                                    </a>
+                                @endif
                             </a>
                         </li>
                         <!-- Logout -->
                         <li class="nav-item">
-                            <a class="nav-link" href=""
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <a class="nav-link" href="{{route('logout')}}">
+                                @method('get')
                                 <i class="fas fa-sign-out-alt"></i> Đăng xuất
                             </a>
-
-                            <!-- Form logout -->
+                            <!-- Form logout -->    
                             <form id="logout-form" action="" method="POST" style="display: none;">
                                 @csrf
                             </form>
@@ -112,7 +116,6 @@
                 e.preventDefault();
                 $("#wrapper").toggleClass("toggled");
             });
-            
         </script>
 
 </body>

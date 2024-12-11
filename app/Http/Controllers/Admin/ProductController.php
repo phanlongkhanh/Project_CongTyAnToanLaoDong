@@ -4,18 +4,23 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ProductController extends Controller
 {
     public function index(){
-        return view('Admin.product.index');
+        $users = Auth::check() ? Auth::user()->name : null;
+        return view('Admin.product.index',compact('users'));
     }
 
     public function create(){
-        return view('Admin.product.create');
+        $users = Auth::check() ? Auth::user()->name : null;
+        return view('Admin.product.create',compact('users'));
     }
 
     public function update(){
-        return view('Admin.product.update');
+        $users = Auth::check() ? Auth::user()->name : null;
+        return view('Admin.product.update',compact('users'));
     }
 }
