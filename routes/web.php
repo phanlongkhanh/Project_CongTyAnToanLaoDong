@@ -9,6 +9,8 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\UserPostController;
+
 
 
 
@@ -46,6 +48,12 @@ Route::prefix('post')->group(function () {
     Route::post('/add', [PostController::class, 'store'])->name('store-post');
     Route::get('active/{id}', [PostController::class, 'Active'])->name('active-post');
     Route::get('/{id}', [PostController::class, 'edit'])->name('edit-post');
+});
+
+Route::prefix('baiviet')->group(function () {
+    Route::get('/', action: [UserPostController::class, 'index'])->name('index-post-user');
+    Route::get('/{id}', [UserPostController::class, 'view'])->name('view-post-user');
+
 });
 
 
