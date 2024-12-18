@@ -8,6 +8,25 @@
 @endsection
 
 @section('content')
+
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+
     <div class="container">
         <h1>Thêm Mới Bài Viết</h1>
         <form action="{{ route('store-post') }}" method="POST" enctype="multipart/form-data">
@@ -15,7 +34,9 @@
             <div class="form-group">
                 <label for="title">Tiêu đề (Title)</label>
                 <input type="text" id="title" name="title" class="form-control" placeholder="Nhập tiêu đề bài viết"
-                    required>
+                    required oninput="checkTitleLength()">
+                <small id="titleLengthWarning" style="color: red; display: none;">Độ dài tiêu đề Seo quá dài để có thể nhìn
+                    thấy.</small>
             </div>
 
 
@@ -28,8 +49,8 @@
 
             <div class="form-group">
                 <label for="slug">Đường dẫn (Slug)</label>
-                <input type="text" id="slug" name="slug" class="form-control"
-                    placeholder="đường dẫn thân thiện" required readonly>
+                <input type="text" id="slug" name="slug" class="form-control" placeholder="đường dẫn thân thiện"
+                    required readonly>
             </div>
 
             <div class="form-group">
@@ -39,7 +60,10 @@
 
             <div class="form-group">
                 <label for="description">Mô tả (Meta Description)</label>
-                <textarea id="description" name="description" class="form-control" placeholder="Nhập mô tả không quá 200 từ !" required></textarea>
+                <textarea id="description" name="description" class="form-control" placeholder="Nhập mô tả không quá 150 từ !" required
+                    oninput="checkDescriptionLength()"></textarea>
+                <small id="descriptionWarning" style="color: red; display: none;">Mô tả không phù hợp (Vượt quá 150
+                    từ).</small>
             </div>
 
             <div class="form-group">

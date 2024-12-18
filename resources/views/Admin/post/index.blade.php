@@ -1,6 +1,5 @@
 @extends('Layout.admin')
 @section('title', 'POST')
-
 @section('content')
 
     <h1 class="mb-4">Bài Viết</h1>
@@ -42,25 +41,31 @@
                             Chưa có danh mục
                         @endif
                     </td>
-                    <td>
+                    <td class="text-center">
                         @if ($item->checkactive == 1)
-                            <a style="line-height: 150px;" href="{{ route('active-post', $item->id) }}">
-                                <div class="btn btn-primary text-center text-nowrap"> Show</div>
-                            </a>
+                            <button class="btn btn-primary btn-sm" style="margin-top: 62px"
+                                onclick="confirmToggleActive({{ $item->id }}, 'hide')">Show</button>
                         @else
-                            <a style="line-height: 150px;" href="{{ route('active-post', $item->id) }}">
-                                <div class="btn btn-danger text-center text-nowrap"> Hide</div>
-                            </a>
+                            <button class="btn btn-danger btn-sm" style="margin-top: 62px"
+                                onclick="confirmToggleActive({{ $item->id }}, 'show')">Hide</button>
                         @endif
+                        <form id="active-form-{{ $item->id }}" action="{{ route('active-post', $item->id) }}"
+                            method="GET" style="display: none;">
+                            @csrf
+                        </form>
                     </td>
                     <td style="line-height: 150px" class="text-center text-nowrap">
-                        <a href="{{ route('edit-post', ['id' => Crypt::encrypt($item->id)]) }}" class="btn btn-warning btn-sm">
+                        <button class="btn btn-warning btn-sm"
+                            onclick="confirmEdit('{{ route('edit-post', ['id' => Crypt::encrypt($item->id)]) }}')">
                             <i class="fas fa-edit"></i> Sửa
-                        </a>
-                        <form action="#" method="POST" style="display:inline-block;">
+                        </button>
+                        <form id="delete-form-{{ $item->id }}"
+                            action="{{ route('destroy-post', ['id' => $item->id]) }}" method="POST"
+                            style="display:inline-block;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">
+                            <button type="button" class="btn btn-danger btn-sm"
+                                onclick="confirmDelete({{ $item->id }})">
                                 <i class="fas fa-trash-alt"></i> Xóa
                             </button>
                         </form>
@@ -73,3 +78,6 @@
     {{-- <!-- Phân trang nếu cần -->
     {{ $products->links() }} --}}
 @endsection
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="jss/post/post.js"></script>

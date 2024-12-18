@@ -13,13 +13,13 @@
 <body>
     <!-- Header -->
     <div class="header">
-        <span>Email: Antoanvn.com.vn@gmail.com</span>
+        <span>Email: phanlongkhanh.tdc2223@gmail.com</span>
     </div>
 
     <!-- Main Banner -->
     <div class="banner">
-        <img src="{{ asset('logo/logo.png') }}" alt="Logo">
-        <h1>CÔNG TY TNHH HUẤN LUYỆN AN TOÀN<br>VÀ KIỂM ĐỊNH SÀI GÒN</h1>
+        {{-- <img src="{{ asset('logo/logo.png') }}" alt="Logo"> --}}
+        <h1>CÔNG TY TNHH CÔNG NGHỆ KỸ THUẬT<br>THIẾT KẾ HỖ TRỢ WEB-SITE</h1>
         <p>Chuyên Nghiệp - Uy Tín - Hiện Đại</p>
     </div>
 
@@ -29,10 +29,10 @@
         <a href="#">GIỚI THIỆU</a>
 
         <div class="dropdown">
-            <a href="#">DỊCH VỤ</a>
+            <a href="#">SẢN PHẨM</a>
             <div class="dropdown-content">
                 <div class="dropdown">
-                    <a href="#">Huấn Luyện</a>
+                    <a class="text-nowrap" style="font-size: 3mm" href="#">DANH SÁCH SẢN PHẨM</a>
                     <div class="dropdown-content">
                         @foreach ($category_posts as $item)
                             <a href="#">{{ $item->name }}</a>
@@ -44,7 +44,7 @@
 
         <a href="{{ route('index-post-news') }}">TIN TỨC</a>
         <a href="#">VĂN BẢN PHÁP QUY</a>
-        <a href="{{route('index-post-ceremony')}}">KHAI GIẢNG</a>
+        <a href="{{ route('index-post-ceremony') }}">KHAI GIẢNG</a>
         <a href="#">TUYỂN DỤNG</a>
         <a href="#">LIÊN HỆ</a>
     </div>
@@ -57,17 +57,18 @@
 
     <div class="phone-numbers">
         <span class="zalo"><a href="https://www.facebook.com/HackerPLK.OffCiryLife/">Zalo</a></span>
-        <span class="phone">09380.7777.1</span>
-        <span class="phone">09382.7777.1</span>
+        <span class="zalo"><a href="https://www.facebook.com/HackerPLK.OffCiryLife/">FaceBook</a></span>
+        <span class="phone">0777.855.202</span>
+        <span class="phone">0777.533.302</span>
     </div>
 
 
-    <footer class="footer">
+    <footer class="footer mt-5">
         <div class="footer-container">
             <!-- Cột 1: Thông tin liên hệ -->
             <div class="footer-column">
                 <h3>THÔNG TIN LIÊN HỆ</h3>
-                <p><strong>CÔNG TY TNHH HUẤN LUYỆN AN TOÀN VÀ KIỂM ĐỊNH SÀI GÒN</strong></p>
+                <p><strong>CÔNG TY TNHH KHÁNH LONG PHAN THIẾT KẾ HỖ TRỢ DEV</strong></p>
                 <p><strong>Điện thoại:</strong> 09382.7777.1 – 0905.2116.89 – 09380.7777.1</p>
                 <p><strong>Email:</strong> Antoanvn.com.vn@gmail.com</p>
                 <p><strong>Địa chỉ:</strong> 6D Đường số 19, KP3, P.Linh Chiểu, TP. Thủ Đức</p>

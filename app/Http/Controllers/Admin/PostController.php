@@ -23,7 +23,7 @@ class PostController extends Controller
         if (!Auth::check()) {
             return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
         }
-        
+
         $users = Auth::check() ? Auth::user()->name : null;
         $posts = Post::with('categoryPost')->get();
         return view('Admin.post.index', compact('posts', 'users'));
@@ -42,7 +42,7 @@ class PostController extends Controller
             'keywords' => 'required|string',
             'slug' => 'required|string|unique:post,slug',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'description' => 'nullable|string|max:1000',
+            'description' => 'nullable|string|max:200',
             'content' => 'required|string',
             'id_category_post' => 'nullable|exists:category_post,id',
         ]);
@@ -85,9 +85,61 @@ class PostController extends Controller
             return redirect()->route('index-post')->with('error', 'Không tìm thấy bài viết với ID này.');
         }
 
-        return view('Admin.post.update', compact('post','users','categories_posts'));
+        return view('Admin.post.update', compact('post', 'users', 'categories_posts'));
     }
-    
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'keywords' => 'required|string',
+            'slug' => 'required|string|unique:post,slug,' . $id, 
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'description' => 'nullable|string|max:200',
+            'content' => 'required|string',
+            'id_category_post' => 'nullable|exists:category_post,id',
+        ]);
+
+        $post = Post::findOrFail($id);
+
+        $imagePath = $post->image;
+        if ($request->hasFile('image')) {
+            if ($imagePath && file_exists(public_path('images/' . $imagePath))) {
+                unlink(public_path('images/' . $imagePath));
+            }
+
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName);
+            $imagePath = $imageName;
+        }
+
+        $post->update([
+            'title' => $validated['title'],
+            'keywords' => $validated['keywords'],
+            'slug' => $validated['slug'],
+            'image' => $imagePath,
+            'description' => $validated['description'] ?? null,
+            'content' => $validated['content'],
+            'id_category_post' => $validated['id_category_post'] ?? null,
+        ]);
+
+        return redirect()->route('index-post')->with('success', 'Bài viết đã được cập nhật thành công!');
+    }
+
+    public function destroy($id)
+    {
+        $post = Post::findOrFail($id); 
+
+        if ($post->image && file_exists(public_path('images/' . $post->image))) {
+            unlink(public_path('images/' . $post->image));
+        }
+
+        $post->delete();
+
+        return redirect()->route('index-post')->with('success', 'Bài viết đã được xóa thành công!');
+    }
+
 
     public function Active($id)
     {
