@@ -34,26 +34,27 @@
                 <div class="dropdown">
                     <a href="#">Huấn Luyện</a>
                     <div class="dropdown-content">
-                        @foreach($category_posts as $item)
-                        <a href="#">{{$item -> name}}</a>
+                        @foreach ($category_posts as $item)
+                            <a href="#">{{ $item->name }}</a>
                         @endforeach
                     </div>
                 </div>
             </div>
         </div>
 
-        <a href="{{route('index-post-user')}}">TIN TỨC</a>
+        <a href="{{ route('index-post-news') }}">TIN TỨC</a>
         <a href="#">VĂN BẢN PHÁP QUY</a>
-        <a href="#">KHAI GIẢNG</a>
+        <a href="{{route('index-post-ceremony')}}">KHAI GIẢNG</a>
         <a href="#">TUYỂN DỤNG</a>
         <a href="#">LIÊN HỆ</a>
     </div>
+
+
     <!-- Container -->
     <div class="container">
         @yield('content')
     </div>
 
-    <!-- Phone Numbers at Bottom Right -->
     <div class="phone-numbers">
         <span class="zalo"><a href="https://www.facebook.com/HackerPLK.OffCiryLife/">Zalo</a></span>
         <span class="phone">09380.7777.1</span>
@@ -90,7 +91,7 @@
             <div class="footer-column">
                 <h3>BẢN ĐỒ</h3>
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509634!2d144.9537363153168!3d-37.81627917975151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5776b4c6ed1d4c6!2sMelbourne%20Central!5e0!3m2!1sen!2sau!4v1611812832134!5m2!1sen!2sau"
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7836.484197362878!2d106.762306!3d10.869182!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175275fc861239d%3A0x7aae604e45ecdc27!2zQ8OUTkcgVFkgSFXhuqROIExVWeG7hk4gQU4gVE_DgE4gVsOAIEtJ4buCTSDEkOG7ik5IIFPDgEkgR8OSTg!5e0!3m2!1svi!2sus!4v1692148573839!5m2!1svi!2sus"
                     width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
