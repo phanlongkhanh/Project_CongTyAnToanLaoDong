@@ -2,17 +2,27 @@
 @section('title')
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/breadcrumb/breadcrumb.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/homepage/index.css') }}">
 
     <div class="breadcrumb">
         <a href="/">Trang chủ</a>
         <span>/</span>
     </div>
 
+
+
+
+
+
+
+
+
+
     <div class="slider">
         <div class="slides">
-            <img src="https://via.placeholder.com/1000x400?text=Image+1" alt="Image 1">
-            <img src="https://via.placeholder.com/1000x400?text=Image+2" alt="Image 2">
-            <img src="https://via.placeholder.com/1000x400?text=Image+3" alt="Image 3">
+            <img src="{{ asset('images/h1.jpg') }}" alt="Image 1">
+            <img src="{{ asset('images/h2.jpg') }}" alt="Image 2">
+            <img src="{{ asset('images/h3.jpg') }}" alt="Image 3">
         </div>
         <div class="navigation">
             <button onclick="prevSlide()">&#10094;</button>
@@ -20,58 +30,60 @@
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <script>
-        const slides = document.querySelector('.slides');
-        const images = document.querySelectorAll('.slides img');
-        let currentIndex = 0;
-
-        function showSlide(index) {
-            if (index >= images.length) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = images.length - 1;
-            } else {
-                currentIndex = index;
-            }
-            const offset = -currentIndex * 100;
-            slides.style.transform = `translateX(${offset}%)`;
+    <style>
+        .slider {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
         }
 
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slides img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .navigation button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.slides img');
+        const totalImages = images.length;
+
         function nextSlide() {
-            showSlide(currentIndex + 1);
+            currentIndex = (currentIndex + 1) % totalImages;
+            updateSlider();
         }
 
         function prevSlide() {
-            showSlide(currentIndex - 1);
+            currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+            updateSlider();
+        }
+
+        function updateSlider() {
+            const slides = document.querySelector('.slides');
+            slides.style.transform = `translateX(${-currentIndex * 100}%)`;
         }
     </script>
 

@@ -21,3 +21,4 @@ function nextSlide() {
 function prevSlide() {
     showSlide(currentIndex - 1);
 }
+
