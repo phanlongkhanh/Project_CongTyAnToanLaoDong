@@ -9,7 +9,8 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\User\UserPostController;
+use App\Http\Controllers\User\PostNewController;
+use App\Http\Controllers\User\PostCeremonyController;
 
 
 
@@ -51,8 +52,14 @@ Route::prefix('post')->group(function () {
 });
 
 Route::prefix('baiviet')->group(function () {
-    Route::get('/', action: [UserPostController::class, 'index'])->name('index-post-user');
-    Route::get('/{id}', [UserPostController::class, 'view'])->name('view-post-user');
+    Route::get('/', action: [PostNewController::class, 'index'])->name('index-post-news');
+    Route::get('/{slug}', [PostNewController::class, 'view'])->name('view-post-news');
+
+});
+
+Route::prefix('khaigiang')->group(function () {
+    Route::get('/', action: [PostCeremonyController::class, 'index'])->name('index-post-ceremony');
+    Route::get('/{slug}', [PostCeremonyController::class, 'view'])->name('view-post-ceremony');
 
 });
 
