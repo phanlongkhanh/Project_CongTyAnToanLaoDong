@@ -9,31 +9,36 @@
         <a href="{{ route('index-post-news') }}">Tin Tức</a>
     </div>
 
-    @foreach ($posts as $item)
-        <div class="post mb-4 p-4 rounded shadow-sm">
-            <div class="d-flex mb-3">
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <div class="posts-container">
+        @foreach ($posts as $item)
+            <div class="post d-flex align-items-start mb-4">
                 <div class="post-image me-3">
-                    <a href="{{ route('view-post-news', ['slug' => $item->slug]) }}">
-                        <img src="{{ asset('images/' . $item->image) }}" height="350px" width="350px"
-                            class="img-fluid rounded" alt="{{ $item->title }}">
+                    <a href="{{ route('view-post-ceremony', ['slug' => $item->slug]) }}">
+                        <img src="{{ asset('images/' . $item->image) }}" class="img-fluid rounded"
+                            alt="{{ $item->title }}">
                     </a>
                 </div>
-                <div class="post-details pl-3">
-                    <a href="{{ route('view-post-news', ['slug' => $item->slug]) }}">
-                        <h4 class="post-title">{{ $item->title }}</h4>
+                <div class="post-details">
+                    <a href="{{ route('view-post-ceremony', ['slug' => $item->slug]) }}">
+                        <h5 class="post-title">{{ $item->title }}</h5>
                     </a>
-                    <div class="post-meta-description mb-3">
-                        <p>{{ Str::limit($item->description, 150) }}</p>
-                    </div>
-                    <div class="mt-3">
-                        <a href="{{ route('view-post-news', ['slug' => $item->slug]) }}" class="btn btn-primary">View More</a>
-                    </div>
+                    <p class="post-meta-description">{{ Str::limit($item->description, 150) }}</p>
+                    <a href="{{ route('view-post-ceremony', ['slug' => $item->slug]) }}" class="btn btn-primary mt-2">View
+                        More</a>
                 </div>
             </div>
-        </div>
-    @endforeach
-    @if ($posts->isEmpty())
-        <div>Không Có Bài Viết Nào</div>
-    @endif
+        @endforeach
+
+        @if ($posts->isEmpty())
+            <div>Không Có Bài Viết Nào</div>
+        @endif
+    </div>
+
 
 @endsection

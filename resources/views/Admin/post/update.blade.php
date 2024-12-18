@@ -8,10 +8,29 @@
 @endsection
 
 @section('content')
+
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+    
     <div class="container">
         <h1>Cập Nhật Bài Viết</h1>
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('update-post', ['id' => $post->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="title">Tiêu đề (Title)</label>
                 <input type="text" id="title" name="title" class="form-control" value="{{ $post->title }}"
@@ -60,7 +79,7 @@
             <div class="form-group">
                 <label>Nội dung</label>
                 <textarea class="form-control" id="editor_js" name="content" rows="3"
-                    placeholder="Viết nội dung chi tiết tại đây ...">{{$post->content}}</textarea>
+                    placeholder="Viết nội dung chi tiết tại đây ...">{{ $post->content }}</textarea>
             </div>
 
             <div class="col-md-12">

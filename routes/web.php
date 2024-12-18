@@ -49,6 +49,8 @@ Route::prefix('post')->group(function () {
     Route::post('/add', [PostController::class, 'store'])->name('store-post');
     Route::get('active/{id}', [PostController::class, 'Active'])->name('active-post');
     Route::get('/{id}', [PostController::class, 'edit'])->name('edit-post');
+    Route::put('/{id}', [PostController::class, 'update'])->name('update-post');
+Route::delete('/{id}', [PostController::class, 'destroy'])->name('destroy-post');
 });
 
 Route::prefix('baiviet')->group(function () {
@@ -69,4 +71,7 @@ Route::prefix('category-post')->group(function () {
     Route::get('/create', [CategoryPostController::class, 'create'])->name('create-category-post');
     Route::post('/add', [CategoryPostController::class, 'store'])->name('store-category-post');
     Route::delete('/{id}', [CategoryPostController::class, 'destroy'])->name('destroy-category-post');
+    Route::get('/{id}', [CategoryPostController::class, 'edit'])->name('edit-category-post');
+    Route::put('/{id}', [CategoryPostController::class, 'update'])->name('update-category-post');
+
 });

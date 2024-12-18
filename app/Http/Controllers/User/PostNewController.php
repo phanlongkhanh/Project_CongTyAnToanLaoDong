@@ -27,7 +27,7 @@ class PostNewController extends Controller
     {
         $posts = Post::where('slug', $slug)->first();
         if (!$posts) {
-            return redirect()->route('view-post-news')->with('error', 'Không tìm thấy bài viết với slug này.');
+            return redirect()->route('index-post-news')->with('error', 'Không tìm thấy bài viết với slug này.');
         }
         $category_posts = CategoryPost::all();
 

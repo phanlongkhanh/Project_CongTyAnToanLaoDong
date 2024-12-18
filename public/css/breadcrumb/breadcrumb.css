@@ -5,6 +5,7 @@ body {
 }
 
 .breadcrumb {
+    margin-top: 20px;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -27,15 +28,6 @@ body {
     margin-right: 5px;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-}
 
 .slider {
     position: relative;
@@ -75,4 +67,44 @@ body {
 
 .navigation button:hover {
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+.posts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.post {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.post-image img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.post-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.post-meta-description {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    font-size: 0.9rem;
 }
