@@ -1,0 +1,42 @@
+.card {
+    display: flex;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.image-section img {
+    width: 250px;
+    height: auto;
+    object-fit: cover;
+}
+
+.content-section {
+    padding: 20px;
+}
+
+.content-section h2 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.content-section p {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.view-more-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.view-more-btn:hover {
+    background-color: #45a049;
+}

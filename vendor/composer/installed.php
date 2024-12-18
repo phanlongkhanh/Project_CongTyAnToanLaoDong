@@ -1,15 +1,24 @@
 <?php return array(
     'root' => array(
         'name' => 'laravel/laravel',
-        'pretty_version' => 'v10.0.0',
-        'version' => '10.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '7ef58849851d48d39556f46d125106d4bc55d9c9',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
+        'balping/json-raw-encoder' => array(
+            'pretty_version' => 'v1.0.2',
+            'version' => '1.0.2.0',
+            'reference' => '9338e193f84dbea33edcb1cb82baea328afadefb',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../balping/json-raw-encoder',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'brick/math' => array(
             'pretty_version' => '0.12.1',
             'version' => '0.12.1.0',
@@ -25,6 +34,15 @@
             'reference' => '99f76ffa36cce3b70a4a6abce41dba15ca2e84cb',
             'type' => 'library',
             'install_path' => __DIR__ . '/../carbonphp/carbon-doctrine-types',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'consoletvs/charts' => array(
+            'pretty_version' => '6.7.0',
+            'version' => '6.7.0.0',
+            'reference' => '408b62609d79be06d229181d3b4c3a4cf6e27a1b',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../consoletvs/charts',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -380,9 +398,9 @@
             'dev_requirement' => false,
         ),
         'laravel/laravel' => array(
-            'pretty_version' => 'v10.0.0',
-            'version' => '10.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '7ef58849851d48d39556f46d125106d4bc55d9c9',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -757,8 +775,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
