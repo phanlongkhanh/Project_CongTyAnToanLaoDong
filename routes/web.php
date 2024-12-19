@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\CategoryPostController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\PostNewController;
 use App\Http\Controllers\User\PostCeremonyController;
+use App\Http\Controllers\User\UserProductController;
 
 
 
@@ -28,8 +29,9 @@ Route::prefix('login')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::prefix('homepage')->group(function () {
+Route::prefix('trangchu')->group(function () {
     Route::get('/', [HomepageController::class, 'index'])->name('index-homepage');
+    Route::get('/sanpham', [UserProductController::class, 'index'])->name('index-product-user');
 });
 
 Route::prefix('admin')->group(function () {
@@ -53,7 +55,7 @@ Route::prefix('post')->group(function () {
 Route::delete('/{id}', [PostController::class, 'destroy'])->name('destroy-post');
 });
 
-Route::prefix('baiviet')->group(function () {
+Route::prefix('tintuc')->group(function () {
     Route::get('/', action: [PostNewController::class, 'index'])->name('index-post-news');
     Route::get('/{slug}', [PostNewController::class, 'view'])->name('view-post-news');
 

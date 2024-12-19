@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @yield('title')
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/master/master.css') }}">
     <script src="{{ asset('jss/master/master.js') }}"></script>
 </head>
@@ -27,26 +28,34 @@
     <div class="nav">
         <a href="/">TRANG CHỦ</a>
         <a href="#">GIỚI THIỆU</a>
-
+        <a href="{{ route('index-product-user') }}">SẢN PHẨM</a>
         <div class="dropdown">
-            <a href="#">SẢN PHẨM</a>
+            <a href="">DỊCH VỤ</a>
             <div class="dropdown-content">
                 <div class="dropdown">
-                    <a class="text-nowrap" style="font-size: 3mm" href="#">DANH SÁCH SẢN PHẨM</a>
+                    <a class="text-nowrap" style="font-size: 3mm" href="{{route('index-post-news')}}">Tin tức</a>
+                    <a class="text-nowrap" style="font-size: 3mm" href="{{route('index-post-news')}}">Hồ Sơ</a>
                     <div class="dropdown-content">
-                        @foreach ($category_posts as $item)
-                            <a href="#">{{ $item->name }}</a>
-                        @endforeach
+
                     </div>
                 </div>
             </div>
         </div>
-
-        <a href="{{ route('index-post-news') }}">TIN TỨC</a>
-        <a href="#">VĂN BẢN PHÁP QUY</a>
         <a href="{{ route('index-post-ceremony') }}">KHAI GIẢNG</a>
         <a href="#">TUYỂN DỤNG</a>
         <a href="#">LIÊN HỆ</a>
+
+        <!-- Thêm Giỏ hàng -->
+        <a href="#" class="cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">3</span>
+        </a>
+
+        <!-- Thêm Chuông Thông Báo -->
+        <a href="#" class="notification-icon">
+            <i class="fas fa-bell"></i>
+            <span class="notification-count">5</span>
+        </a>
     </div>
 
 

@@ -9,7 +9,8 @@ body {
 }
 
 .header {
-    background-color: #4CAF50;
+    background-color: #009688;
+    /* Màu xanh lục lam đậm */
     color: #fff;
     padding: 5px 20px;
     display: flex;
@@ -21,7 +22,7 @@ body {
 }
 
 .banner {
-    background-color: #fff;
+    background-color: #ffffff;
     text-align: center;
     padding: 20px;
     position: relative;
@@ -33,7 +34,8 @@ body {
 }
 
 .banner h1 {
-    color: #4CAF50;
+    color: #009688;
+    /* Màu xanh lục lam đậm */
     font-size: 28px;
     margin-top: 10px;
 }
@@ -41,21 +43,24 @@ body {
 .banner p {
     font-size: 18px;
     font-style: italic;
-    color: #333;
+    color: #555;
+    /* Màu xám đậm */
 }
 
 .nav {
     display: flex;
     justify-content: center;
-    align-items: center; 
-    background-color: #4CAF50;
+    align-items: center;
+    background-color: #009688;
+    /* Màu xanh lục lam đậm */
     padding: 10px 0;
 }
 
 .nav a {
     text-decoration: none;
-    color: #333;
-    margin: 0 15px; 
+    color: #fff;
+    /* Màu trắng */
+    margin: 0 15px;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -63,9 +68,7 @@ body {
 .nav a:hover {
     color: #f6f6f6;
     border-radius: 5px;
-
 }
-
 
 .dropdown {
     position: relative;
@@ -75,18 +78,20 @@ body {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #4CAF50;
+    background-color: #009688;
+    /* Màu xanh lục lam đậm */
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
-.dropdown:hover > .dropdown-content {
+.dropdown:hover>.dropdown-content {
     display: block;
 }
 
 .dropdown-content a {
-    color: black;
+    color: #fff;
+    /* Màu trắng */
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -94,12 +99,8 @@ body {
 
 .dropdown-content a:hover {
     background-color: #f1f1f1;
-}
-
-.dropdown .dropdown:hover > .dropdown-content {
-    left: 100%; 
-    top: 0;
-    display: block;
+    color: #009688;
+    /* Màu xanh lục lam đậm khi hover */
 }
 
 .phone-numbers {
@@ -113,7 +114,8 @@ body {
 }
 
 .phone {
-    background-color: #ff5733;
+    background-color: #FF5722;
+    /* Màu cam đỏ */
     color: #fff;
     padding: 10px 15px;
     border-radius: 5px;
@@ -125,7 +127,8 @@ body {
 }
 
 .zalo {
-    background-color: #a3e5ef;
+    background-color: #00BCD4;
+    /* Màu xanh dương nhạt */
     color: #fff;
     padding: 10px 15px;
     border-radius: 5px;
@@ -151,12 +154,12 @@ body {
 }
 
 .phone:hover {
-    background-color: #e74c3c;/ cursor: pointer;
+    background-color: #e74c3c;
+    cursor: pointer;
 }
 
-
 .footer {
-    background-color: #4CAF50; 
+    background-color: #009688;
     color: white;
     padding: 30px 0;
 }
@@ -181,7 +184,8 @@ body {
     padding-bottom: 10px;
 }
 
-.footer-column p, .footer-column ul {
+.footer-column p,
+.footer-column ul {
     font-size: 14px;
     line-height: 1.8;
 }
@@ -204,4 +208,25 @@ body {
     padding: 10px 0;
     color: white;
     font-size: 13px;
+}
+
+.cart-icon,
+.notification-icon {
+    right: -120px;
+    font-size: 18px;
+    margin: 0 15px;
+    position: relative;
+}
+
+.cart-icon .cart-count,
+.notification-icon .notification-count {
+    margin-top: -3px;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #ff5722;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 50%;
+    padding: 0px 3px;
 }
