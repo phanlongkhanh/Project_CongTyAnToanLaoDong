@@ -7,6 +7,8 @@
     @yield('title')
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('homepage-images/p5.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/master/master.css') }}">
     <script src="{{ asset('jss/master/master.js') }}"></script>
 </head>
@@ -21,20 +23,23 @@
     <div class="banner">
         {{-- <img src="{{ asset('logo/logo.png') }}" alt="Logo"> --}}
         <h1>CÔNG TY TNHH CÔNG NGHỆ KỸ THUẬT<br>THIẾT KẾ HỖ TRỢ WEB-SITE</h1>
-        <p>Chuyên Nghiệp - Uy Tín - Hiện Đại</p>
+        <h4 style="color: #56931f; text-align: center; font-family: 'Allura', sans-serif; font-weight: 400; font-style: normal;"
+            class="vc_custom_heading vc_custom_1692147398253">
+            Chuyên Nghiệp - Uy Tín - Hiện Đại
+        </h4>
     </div>
 
     <!-- Navigation Menu -->
     <div class="nav">
         <a href="/">TRANG CHỦ</a>
-        <a href="#">GIỚI THIỆU</a>
+        <a href="{{ route('index-introduce') }}">GIỚI THIỆU</a>
         <a href="{{ route('index-product-user') }}">SẢN PHẨM</a>
         <div class="dropdown">
             <a href="">DỊCH VỤ</a>
             <div class="dropdown-content">
                 <div class="dropdown">
-                    <a class="text-nowrap" style="font-size: 3mm" href="{{route('index-post-news')}}">Tin tức</a>
-                    <a class="text-nowrap" style="font-size: 3mm" href="{{route('index-post-news')}}">Hồ Sơ</a>
+                    <a class="text-nowrap" style="font-size: 3mm" href="{{ route('index-post-news') }}">Tin tức</a>
+                    <a class="text-nowrap" style="font-size: 3mm" href="{{ route('index-post-news') }}">Hồ Sơ</a>
                     <div class="dropdown-content">
 
                     </div>
@@ -42,7 +47,7 @@
             </div>
         </div>
         <a href="{{ route('index-post-ceremony') }}">KHAI GIẢNG</a>
-        <a href="#">TUYỂN DỤNG</a>
+        <a href="{{ route('index-recruitment') }}">TUYỂN DỤNG</a>
         <a href="#">LIÊN HỆ</a>
 
         <!-- Thêm Giỏ hàng -->
@@ -77,8 +82,9 @@
             <!-- Cột 1: Thông tin liên hệ -->
             <div class="footer-column">
                 <h3>THÔNG TIN LIÊN HỆ</h3>
-                <p><strong>CÔNG TY TNHH KHÁNH LONG PHAN THIẾT KẾ HỖ TRỢ DEV</strong></p>
-                <p><strong>Điện thoại:</strong> 09382.7777.1 – 0905.2116.89 – 09380.7777.1</p>
+                <p><strong>CÔNG TY TNHH CÔNG NGHỆ KỸ THUẬT
+                        THIẾT KẾ <br>  HỖ TRỢ WEB-SITE</strong></p>
+                <p><strong>Điện thoại:</strong> 0777.855.202 – 0777.533.302 – 09380.7777.1</p>
                 <p><strong>Email:</strong> Antoanvn.com.vn@gmail.com</p>
                 <p><strong>Địa chỉ:</strong> 6D Đường số 19, KP3, P.Linh Chiểu, TP. Thủ Đức</p>
                 <p><strong>Văn phòng:</strong> 417 Trần Hưng Đạo, Phan Thiết, Bình Thuận</p>

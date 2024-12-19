@@ -96,7 +96,7 @@ function confirmEdit(url) {
 }
 
 function confirmToggleActive(id, action) {
-    const actionText = action === 'show' ? 'kích hoạt' : 'hủy kích hoạt';
+    const actionText = action === 'show' ? 'Mở Chặn' : 'Chặn';
     Swal.fire({
         title: `Bạn có chắc chắn muốn ${actionText}?`,
         icon: 'question',
@@ -115,7 +115,7 @@ function confirmToggleActive(id, action) {
                 confirmButtonColor: '#3085d6',
                 timer: 15000,
                 timerProgressBar: true,
-            }).then(() => {
+            }).then(() => {        
                 // Sau khi thông báo đóng, có thể thực hiện các hành động khác nếu cần
             });
         }
@@ -139,7 +139,7 @@ function checkDescriptionLength() {
 
     const wordArray = description.split(/\s+/).filter(word => word.length > 0);
 
-    if (wordArray.length > 150) {
+    if (wordArray.length > 200) {
         warning.style.display = 'inline';
     } else {
         warning.style.display = 'none';

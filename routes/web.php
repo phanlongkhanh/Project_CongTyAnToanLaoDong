@@ -31,8 +31,21 @@ Route::prefix('login')->group(function () {
 
 Route::prefix('trangchu')->group(function () {
     Route::get('/', [HomepageController::class, 'index'])->name('index-homepage');
-    Route::get('/sanpham', [UserProductController::class, 'index'])->name('index-product-user');
 });
+
+Route::prefix('sanpham')->group(function () {
+    Route::get('/', [UserProductController::class, 'index'])->name('index-product-user');
+});
+
+
+Route::prefix('gioithieu')->group(function () {
+    Route::get('/', [HomepageController::class, 'indexIntroduce'])->name('index-introduce');
+});
+
+Route::prefix('tuyendung')->group(function () {
+    Route::get('/', [HomepageController::class, 'indexRecruitment'])->name('index-recruitment');
+});
+
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index-dashboard');

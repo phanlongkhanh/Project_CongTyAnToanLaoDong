@@ -11,4 +11,6 @@ class UserProductController extends Controller
         $category_posts = CategoryPost::all();
         return view('User.product.index',compact('category_posts'));
     }
+    
+   
 }
