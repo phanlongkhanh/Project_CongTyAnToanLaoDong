@@ -1,25 +1,22 @@
 @extends('Layout.master')
 @section('title')
 @section('content')
+    <title>Home</title>
     <link rel="stylesheet" href="{{ asset('css/breadcrumb/breadcrumb.css') }}">
     <link rel="stylesheet" href="{{ asset('css/homepage/index.css') }}">
-
     <div class="breadcrumb">
         <a href="/">Trang chủ</a>
         <span>/</span>
     </div>
 
-
-
-
-
-
-
-
-
-
     <div class="slider">
         <div class="slides">
+            <img src="{{ asset('images/h1.jpg') }}" alt="Image 1">
+            <img src="{{ asset('images/h2.jpg') }}" alt="Image 2">
+            <img src="{{ asset('images/h3.jpg') }}" alt="Image 3">
+            <img src="{{ asset('images/h1.jpg') }}" alt="Image 1">
+            <img src="{{ asset('images/h2.jpg') }}" alt="Image 2">
+            <img src="{{ asset('images/h3.jpg') }}" alt="Image 3">
             <img src="{{ asset('images/h1.jpg') }}" alt="Image 1">
             <img src="{{ asset('images/h2.jpg') }}" alt="Image 2">
             <img src="{{ asset('images/h3.jpg') }}" alt="Image 3">
