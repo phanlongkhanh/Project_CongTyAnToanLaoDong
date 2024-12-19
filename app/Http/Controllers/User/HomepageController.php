@@ -12,4 +12,14 @@ class HomepageController extends Controller
         $category_posts = CategoryPost::all();
         return view('User.homepage.index',compact('category_posts'));
     }
+
+    public function indexIntroduce(){
+        $category_posts = CategoryPost::all();
+        return view('User.introduce.index',compact('category_posts'));
+    }
+
+    public function indexRecruitment(){
+        $category_posts = CategoryPost::all();
+        return view('User.recruitment.index',compact('category_posts'));
+    }
 }

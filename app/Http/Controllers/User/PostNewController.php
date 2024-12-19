@@ -15,7 +15,7 @@ class PostNewController extends Controller
     {
         $category = CategoryPost::where('name', 'Tin Tức')->first();
         if ($category) {
-            $posts = Post::where('id_category_post', $category->id)->get();
+            $posts = Post::where('id_category_post', $category->id)->paginate(5);
         } else {
             $posts = collect();
         }

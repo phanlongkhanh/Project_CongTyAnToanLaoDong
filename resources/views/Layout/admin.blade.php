@@ -38,6 +38,12 @@
                     class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-cogs"></i> Quản Lý Sản Phẩm
                 </a>
+
+                <a href="#"
+                    class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
+                    <i class="fa fa-cart-arrow-down"></i> Loại Sản Phẩm
+                </a>
+
                 <!-- Đơn hàng -->
                 <a href="#" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-box"></i> Đơn hàng
@@ -88,11 +94,11 @@
                         </li>
                         <!-- Logout -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('logout')}}">
+                            <a class="nav-link" href="{{ route('logout') }}">
                                 @method('get')
                                 <i class="fas fa-sign-out-alt"></i> Đăng xuất
                             </a>
-                            <!-- Form logout -->    
+                            <!-- Form logout -->
                             <form id="logout-form" action="" method="POST" style="display: none;">
                                 @csrf
                             </form>

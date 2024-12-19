@@ -43,11 +43,11 @@
                     </td>
                     <td class="text-center">
                         @if ($item->checkactive == 1)
-                            <button class="btn btn-primary btn-sm" style="margin-top: 62px"
-                                onclick="confirmToggleActive({{ $item->id }}, 'hide')">Show</button>
+                            <button class="btn btn-success btn-sm" style="margin-top: 62px"
+                                onclick="confirmToggleActive({{ $item->id }}, 'hide')">Chặn</button>
                         @else
                             <button class="btn btn-danger btn-sm" style="margin-top: 62px"
-                                onclick="confirmToggleActive({{ $item->id }}, 'show')">Hide</button>
+                                onclick="confirmToggleActive({{ $item->id }}, 'show')">Mở Chặn</button>
                         @endif
                         <form id="active-form-{{ $item->id }}" action="{{ route('active-post', $item->id) }}"
                             method="GET" style="display: none;">
@@ -77,6 +77,7 @@
 
     {{-- <!-- Phân trang nếu cần -->
     {{ $products->links() }} --}}
+  
 @endsection
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
