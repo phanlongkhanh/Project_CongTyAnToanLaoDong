@@ -21,49 +21,44 @@
             <div class="col-md-3">
                 <div class="filters">
                     <h5>Thương hiệu sản phẩm</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="converse">
-                        <label class="form-check-label" for="converse">Sam Sung</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="converse">
-                        <label class="form-check-label" for="converse">Apple</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="converse">
-                        <label class="form-check-label" for="converse">Hwei</label>
-                    </div>
+                    @foreach ($producttypes as $item)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="id_producttypes"
+                                value="{{ $item->id }}" id="producttypes{{ $item->id }}"
+                                {{ in_array($item->id, old('id_producttypes', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label"
+                                for="producttypes{{ $item->id }}">{{ $item->name }}</label>
+                        </div>
+                    @endforeach
 
                     <h5 class="mt-3">Loại sản phẩm</h5>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="giay-co-cao">
-                        <label class="form-check-label" for="giay-co-cao">52in</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="giay-co-thap">
-                        <label class="form-check-label" for="giay-co-thap">42in</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="socks">
-                        <label class="form-check-label" for="socks">33in</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="socks">
-                        <label class="form-check-label" for="socks">29in</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="socks">
-                        <label class="form-check-label" for="socks">27in</label>
-                    </div>
+                    @foreach ($categories as $item)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="id_category" value="{{ $item->id }}"
+                                id="category{{ $item->id }}"
+                                {{ in_array($item->id, old('id_category', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="category{{ $item->id }}">{{ $item->name }}</label>
+                        </div>
+                    @endforeach
 
-                    <h5 class="mt-3">Kích thước</h5>
+                    <h5 class="mt-3">Dung Lượng</h5>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="size-33x40">
-                        <label class="form-check-label" for="size-33x40">33x40cm</label>
+                        <label class="form-check-label" for="size-33x40">RAM:8GB / SSD:126GB</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="size-40x30">
-                        <label class="form-check-label" for="size-40x30">40x30cm</label>
+                        <label class="form-check-label" for="size-40x30">RAM:16GB / SSD:256GB</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="size-40x30">
+                        <label class="form-check-label" for="size-40x30">RAM:16GB / SSD:512GB</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="size-40x30">
+                        <label class="form-check-label" for="size-40x30">RAM:32GB / SSD:256GB</label>
                     </div>
 
                     <h5 class="mt-3">Màu sắc</h5>
@@ -84,6 +79,15 @@
                         <input class="form-check-input" type="checkbox" id="price-2">
                         <label class="form-check-label text-nowrap" for="price-2">Từ 1.000.000đ - 3.000.000đ</label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="price-2">
+                        <label class="form-check-label text-nowrap" for="price-2">Từ 3.000.000đ - 7.000.000đ</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="price-2">
+                        <label class="form-check-label text-nowrap" for="price-2">Từ 10.000.000đ trở lên</label>
+                    </div>
                 </div>
             </div>
 
@@ -93,16 +97,21 @@
                     @foreach ($products as $item)
                         @if ($item->checkactive == 1)
                             <div class="col-md-4 mb-4">
-                                <div class="product-card position-relative">
+                                <div class="product-card position-relative border rounded shadow-lg">
                                     <!-- Phần giảm giá -->
                                     @if ($item->discount > 0)
                                         <div class="discount-badge position-absolute top-0 end-0 bg-danger text-white p-2">
                                             -{{ $item->discount }}%
                                         </div>
                                     @endif
-                                    <img src="{{ asset('images/' . $item->image) }}" alt="Product Image"
-                                        class="img-fluid">
-                                    <h6>{{ Str::limit($item->name, 40) }}</h6>
+                                    <a href="{{ route('details-product-user', ['id' => Crypt::encrypt($item->id)]) }}')">
+                                        <img src="{{ asset('images/' . $item->image) }}" alt="Product Image"
+                                            class="img-fluid">
+
+                                    </a>
+                                    <a href="{{ route('details-product-user', ['id' => Crypt::encrypt($item->id)]) }}')">
+                                        <h6>{{ Str::limit($item->name, 40) }}</h6>
+                                    </a>
                                     <p class="price">
                                         @if ($item->discount > 0)
                                             <span class="product-price">{{ number_format($item->price) }} VND</span>
@@ -125,6 +134,10 @@
                                             onclick="confirmAddToFavorites()">
                                             <i class="fas fa-heart"></i>
                                         </button>
+                                        <button class="btn btn-outline-primary details-products"
+                                            onclick="confirmDetails('{{ route('details-product-user', ['id' => Crypt::encrypt($item->id)]) }}')">
+                                            <i class="fas fa-star"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -140,5 +153,3 @@
 
 @endsection
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-

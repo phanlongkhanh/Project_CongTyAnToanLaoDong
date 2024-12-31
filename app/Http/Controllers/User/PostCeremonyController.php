@@ -11,7 +11,7 @@ class PostCeremonyController extends Controller
 {
     public function index()
     {
-        $category = CategoryPost::where('name', 'Khai Giảng')->first();
+        $category = CategoryPost::where('name', 'Thông Tin')->first();
         if ($category) {
             $posts = Post::where('id_category_post', $category->id)->paginate(5);
         } else {

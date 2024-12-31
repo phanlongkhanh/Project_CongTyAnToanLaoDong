@@ -210,7 +210,7 @@ body {
     font-size: 13px;
 }
 
-.cart-icon,
+.cart-icon, .heart-icon,
 .notification-icon {
     right: -120px;
     font-size: 18px;
@@ -218,7 +218,7 @@ body {
     position: relative;
 }
 
-.cart-icon .cart-count,
+.cart-icon .cart-count, .heart-icon .heart-count,
 .notification-icon .notification-count {
     margin-top: -3px;
     position: absolute;

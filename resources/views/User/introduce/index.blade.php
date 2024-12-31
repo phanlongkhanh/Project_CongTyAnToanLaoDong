@@ -12,15 +12,16 @@
     </div>
 
     <header>
-        <h1>CÔNG TY TNHH CÔNG NGHỆ KỸ THUẬT <br>
-            THIẾT KẾ HỖ TRỢ WEB-SITE</h1>
+        <h1>CÔNG TY TNHH PC-MASTER SYSTEMS
+            <br>
+            NÂNG TẦM CÔNG NGHỆ</h1>
     </header>
 
     <div class="container">
         <div class="content">
             <div class="section">
                 <h2>Giới thiệu về công ty</h2>
-                <p><p class="text-danger">CÔNG TY TNHH CÔNG NGHỆ KỸ THUẬT THIẾT KẾ HỖ TRỢ WEB-SITE</p>là một trong những đơn vị hàng đầu trong lĩnh
+                <p><p class="text-danger">CÔNG TY TNHH PC-MASTER SYSTEMS NÂNG TẦM CÔNG NGHỆ</p>là một trong những đơn vị hàng đầu trong lĩnh
                     vực cung cấp linh kiện điện
                     tử tại Việt Nam. Chúng tôi chuyên cung cấp các sản phẩm linh kiện điện tử chất lượng cao, đáp ứng nhu
                     cầu của các khách hàng trong các ngành công nghiệp điện tử, tự động hóa, và nhiều lĩnh vực khác.</p>

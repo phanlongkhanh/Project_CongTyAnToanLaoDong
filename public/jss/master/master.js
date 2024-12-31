@@ -63,6 +63,24 @@ function confirmAddToCart() {
     });
 }
 
+//Xác nhận vào trang chi tiết sản phẩm
+function confirmDetails(url) {
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn vào trang chi tiết sản phẩm ?',
+        text: "Đã hiển thị trang chi tiết sản phẩm!.",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Xác Nhận',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = url;
+        }
+    });
+}
+
 // Xác nhận thêm vào yêu thích
 function confirmAddToFavorites() {
     Swal.fire({

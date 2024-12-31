@@ -35,7 +35,7 @@
                     </td>
                     <td style="line-height: 150px" class="text-center text-nowrap">
                         <span>{{ $item->category->name ?? 'Không Có' }} </span>
-                        <span>-</span>  
+                        <span>-</span>
                         <span>{{ $item->productType->name ?? 'Không Có' }}</span>
                     </td>
 
@@ -53,7 +53,8 @@
                         </form>
                     </td>
                     <td style="line-height: 150px" class="text-center text-nowrap">
-                        <button class="btn btn-warning btn-sm" onclick="confirmEdit('#')">
+                        <button class="btn btn-warning btn-sm"
+                            onclick="confirmEdit('{{ route('edit-product', ['id' => Crypt::encrypt($item->id)]) }}')">
                             <i class="fas fa-edit"></i> Sửa
                         </button>
                         <form id="delete-form-{{ $item->id }}" action="#" method="POST"

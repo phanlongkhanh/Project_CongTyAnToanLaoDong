@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
 use App\Models\ProductType;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductController extends Controller
 {
@@ -32,15 +38,27 @@ class ProductController extends Controller
         $users = Auth::check() ? Auth::user()->name : null;
         return view('Admin.product.create', compact('users', 'categories', 'producttypes'));
     }
-    public function update()
+    public function edit($encryptedId)
     {
-        if (!Auth::check()) {
-            return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
+        try {
+            $id = Crypt::decrypt($encryptedId);
+        } catch (DecryptException $e) {
+            return redirect()->route('index-product')->with('error', 'ID sản phẩm không hợp lệ.');
         }
 
+        $products = Product::find($id);
+
+        if (!$products) {
+            return redirect()->route('index-product')->with('error', 'Không tìm thấy sản phẩm với ID này.');
+        }
+
+        $categories = Category::all();
+        $producttypes = ProductType::all();
         $users = Auth::check() ? Auth::user()->name : null;
-        return view('Admin.product.update', compact('users'));
+
+        return view('Admin.product.update', compact('users', 'products', 'categories', 'producttypes'));
     }
+
 
     public function store(Request $request)
     {
@@ -87,6 +105,55 @@ class ProductController extends Controller
             return redirect()->back()->withErrors('Đã xảy ra lỗi khi thêm sản phẩm: ' . $e->getMessage());
         }
     }
+
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'discount' => 'required|integer|min:0|max:100',
+            'description' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'amount' => 'required|integer|min:1',
+            'price' => 'required|integer|min:1',
+            'id_category' => 'required|exists:categories,id',
+            'id_producttype' => 'required|exists:producttypes,id',
+        ]);
+
+        try {
+            $products = Product::findOrFail($id); // Tìm sản phẩm theo ID
+            $imagePath = $products->image; // Đường dẫn ảnh hiện tại
+
+            if ($request->hasFile('image')) {
+                // Xóa ảnh cũ nếu tồn tại
+                if ($imagePath && file_exists(public_path('images/' . $imagePath))) {
+                    unlink(public_path('images/' . $imagePath));
+                }
+
+                // Xử lý và lưu ảnh mới
+                $image = $request->file('image');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images/products'), $imageName);
+                $imagePath = 'products/' . $imageName; // Cập nhật đường dẫn ảnh
+            }
+
+            // Cập nhật thông tin sản phẩm
+            $products->update([
+                'name' => $validated['name'],
+                'discount' => $validated['discount'],
+                'description' => $validated['description'] ?? null,
+                'image' => $imagePath,
+                'amount' => $validated['amount'],
+                'price' => $validated['price'],
+                'id_category' => $validated['id_category'],
+                'id_producttype' => $validated['id_producttype'],
+            ]);
+
+            return redirect()->route('index-product')->with('success', 'Sản phẩm đã được cập nhật thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Đã xảy ra lỗi khi cập nhật sản phẩm: ' . $e->getMessage());
+        }
+    }
+
 
 
     public function Active($id)
