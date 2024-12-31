@@ -5,7 +5,6 @@
 @section('content')
     <h1 class="mb-4 text-center text-success">Tạo Sản Phẩm Mới</h1>
 
-
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -47,8 +46,6 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
@@ -60,35 +57,29 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="category">Danh mục</label>
-                        <div class="border p-2 rounded" style="height: 200px; overflow-y: auto;">
+                        <label for="id_category">Danh mục</label>
+                        <select class="form-control form-control-lg" id="id_category" name="id_category" required>
+                            <option value="">-- Chọn danh mục --</option>
                             @foreach ($categories as $item)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="id_category"
-                                        value="{{ $item->id }}" id="category{{ $item->id }}"
-                                        {{ in_array($item->id, old('id_category', [])) ? 'checked' : '' }}>
-                                    <label class="form-check-label"
-                                        for="category{{ $item->id }}">{{ $item->name }}</label>
-                                </div>
+                                <option value="{{ $item->id }}" {{ old('id_category') == $item->id ? 'selected' : '' }}>
+                                    {{ $item->name }}
+                                </option>
                             @endforeach
-                        </div>
+                        </select>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="product-type">Loại Sản Phẩm</label>
-                        <div class="border p-2 rounded" style="height: 200px; overflow-y: auto;">
+                        <label for="id_producttype">Loại Sản Phẩm</label>
+                        <select class="form-control form-control-lg" id="id_producttype" name="id_producttype" required>
+                            <option value="">-- Chọn loại sản phẩm --</option>
                             @foreach ($producttypes as $item)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="id_producttype"
-                                        value="{{ $item->id }}" id="producttype{{ $item->id }}"
-                                        {{ in_array($item->id, old('id_producttype', [])) ? 'checked' : '' }}>
-                                    <label class="form-check-label"
-                                        for="producttype{{ $item->id }}">{{ $item->name }}</label>
-                                </div>
+                                <option value="{{ $item->id }}" {{ old('id_producttype') == $item->id ? 'selected' : '' }}>
+                                    {{ $item->name }}
+                                </option>
                             @endforeach
-                        </div>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -101,10 +92,14 @@
 
             <div class="form-group">
                 <label for="image">Hình ảnh</label>
-                <input type="file" class="form-control form-control-lg" id="image" name="image" required>
-                @if ($errors->has('image'))
-                    <small class="text-danger">Vui lòng tải lại hình ảnh.</small>
-                @endif
+                <input type="file" class="form-control form-control-lg" id="image" name="image">
+                <small class="text-muted">Nếu không tải ảnh, hệ thống sẽ sử dụng ảnh mặc định.</small>
+            </div>
+
+            <div class="form-group">
+                <label for="list_image">Danh sách Hình Ảnh</label>
+                <input type="file" class="form-control form-control-lg" id="list_image" name="list_image[]" multiple>
+                <small class="text-muted">Chọn nhiều hình ảnh (Nếu không chọn, sẽ không có hình ảnh thêm).</small>
             </div>
 
             <div class="text-center mt-4">
@@ -112,7 +107,6 @@
                 <a href="{{ route('index-product') }}" class="btn btn-secondary btn-lg ml-3">Hủy</a>
             </div>
         </form>
-
     </div>
 @endsection
 

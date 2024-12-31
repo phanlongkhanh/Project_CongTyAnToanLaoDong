@@ -42,7 +42,8 @@
                     <div class="form-group">
                         <label for="amount">Số Lượng</label>
                         <input type="number" class="form-control form-control-lg" id="amount" name="amount"
-                            placeholder="Nhập số lượng sản phẩm" value="{{ old('amount', $products->amount) }}" min="0" required>
+                            placeholder="Nhập số lượng sản phẩm" value="{{ old('amount', $products->amount) }}"
+                            min="0" required>
                     </div>
                 </div>
             </div>
@@ -52,41 +53,38 @@
                     <div class="form-group">
                         <label for="discount">Giảm Giá (%)</label>
                         <input type="number" class="form-control form-control-lg" id="discount" name="discount"
-                            placeholder="Nhập % giảm giá" min="0" max="100" value="{{ old('discount', $products->discount) }}">
+                            placeholder="Nhập % giảm giá" min="0" max="100"
+                            value="{{ old('discount', $products->discount) }}">
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="category">Danh mục</label>
-                        <div class="border p-2 rounded" style="height: 200px; overflow-y: auto;">
+                        <label for="id_category">Danh mục</label>
+                        <select class="form-control form-control-lg" id="id_category" name="id_category" required>
+                            <option value="">-- Chọn danh mục --</option>
                             @foreach ($categories as $item)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="id_category"
-                                        value="{{ $item->id }}" id="category{{ $item->id }}"
-                                        {{ $products->id_category == $item->id ? 'checked' : '' }}>
-                                    <label class="form-check-label"
-                                        for="category{{ $item->id }}">{{ $item->name }}</label>
-                                </div>
+                                <option value="{{ $item->id }}"
+                                    {{ old('id_category', $products->id_category) == $item->id ? 'selected' : '' }}>
+                                    {{ $item->name }}
+                                </option>
                             @endforeach
-                        </div>
+                        </select>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="product-type">Loại Sản Phẩm</label>
-                        <div class="border p-2 rounded" style="height: 200px; overflow-y: auto;">
+                        <label for="id_producttype">Loại Sản Phẩm</label>
+                        <select class="form-control form-control-lg" id="id_producttype" name="id_producttype" required>
+                            <option value="">-- Chọn loại sản phẩm --</option>
                             @foreach ($producttypes as $item)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="id_producttype"
-                                        value="{{ $item->id }}" id="producttype{{ $item->id }}"
-                                        {{ $products->id_producttype == $item->id ? 'checked' : '' }}>
-                                    <label class="form-check-label"
-                                        for="producttype{{ $item->id }}">{{ $item->name }}</label>
-                                </div>
+                                <option value="{{ $item->id }}"
+                                    {{ old('id_producttype', $products->id_producttype) == $item->id ? 'selected' : '' }}>
+                                    {{ $item->name }}
+                                </option>
                             @endforeach
-                        </div>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -101,13 +99,19 @@
                 <label for="image">Hình ảnh</label>
                 <input type="file" class="form-control form-control-lg" id="image" name="image">
                 @if ($products->image)
-                    <p class="mt-2">Hình ảnh hiện tại: <img src="{{ asset('images/' . $products->image) }}" alt="Hình ảnh sản phẩm" class="img-thumbnail" style="max-height: 150px;"></p>
+                    <p class="mt-2">Hình ảnh hiện tại: <img src="{{ asset('images/' . $products->image) }}"
+                            alt="Hình ảnh sản phẩm" class="img-thumbnail" style="max-height: 150px;"></p>
                 @endif
-                @if ($errors->has('image'))
-                    <small class="text-danger">Vui lòng tải lại hình ảnh.</small>
-                @endif
+                <small class="text-muted">Nếu không tải ảnh, hệ thống sẽ sử dụng ảnh mặc định.</small>
             </div>
 
+            <div class="form-group">
+                <label for="list_image">Danh sách Hình Ảnh</label>
+                <input type="file" class="form-control form-control-lg" id="list_image" name="list_image[]" multiple>
+                <small class="text-muted">Chọn nhiều hình ảnh (Nếu không chọn, sẽ không có hình ảnh thêm).</small>
+            </div>
+
+         
             <div class="text-center mt-4">
                 <button type="submit" class="btn btn-warning btn-lg">Cập nhật sản phẩm</button>
                 <a href="{{ route('index-product') }}" class="btn btn-secondary btn-lg ml-3">Hủy</a>

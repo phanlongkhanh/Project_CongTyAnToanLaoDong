@@ -61,8 +61,11 @@ Route::prefix('product')->group(function () {
     Route::get('/{id}', [ProductController::class, 'edit'])->name('edit-product');
     Route::PUT('/{id}', action: [ProductController::class, 'update'])->name('update-product');
     Route::get('active/{id}', [ProductController::class, 'Active'])->name('active-product');
+    Route::delete('/{id}', [ProductController::class, 'destroy'])->name('destroy-product');
 
 });
+
+
 
 Route::prefix('post')->group(function () {
     Route::get('/', action: [PostController::class, 'index'])->name('index-post');

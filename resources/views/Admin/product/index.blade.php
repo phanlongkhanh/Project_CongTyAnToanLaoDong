@@ -57,7 +57,8 @@
                             onclick="confirmEdit('{{ route('edit-product', ['id' => Crypt::encrypt($item->id)]) }}')">
                             <i class="fas fa-edit"></i> Sửa
                         </button>
-                        <form id="delete-form-{{ $item->id }}" action="#" method="POST"
+                        <form id="delete-form-{{ $item->id }}"
+                            action=" {{ route('destroy-product', ['id' => $item->id]) }}" method="POST"
                             style="display:inline-block;">
                             @csrf
                             @method('DELETE')

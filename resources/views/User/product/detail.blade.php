@@ -19,8 +19,12 @@
                         <div class="carousel-item active">
                             <img src="{{ asset('images/' . $products->image) }}" class="d-block w-100" alt="Product Image">
                         </div>
-
-                        <!-- Thêm list Image Vào -->
+                        @foreach ($products->images as $image)
+                            <div class="carousel-item">
+                                <img src="{{ asset('images/' . $image->image_path) }}" class="d-block w-100"
+                                    alt="Product Image">
+                            </div>
+                        @endforeach
 
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#productImages"
@@ -33,6 +37,23 @@
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
+
+                    <div class="mt-3">
+                        <div class="d-flex justify-content-center">
+                            <button type="button" data-bs-target="#productImages" data-bs-slide-to="0"
+                                class="active thumbnail-btn">
+                                <img src="{{ asset('images/' . $products->image) }}" class="img-thumbnail"
+                                    style="width: 80px;">
+                            </button>
+                            @foreach ($products->images as $key => $image)
+                                <button type="button" data-bs-target="#productImages"
+                                    data-bs-slide-to="{{ $key + 1 }}" class="thumbnail-btn">
+                                    <img src="{{ asset('images/' . $image->image_path) }}" class="img-thumbnail"
+                                        style="width: 80px;">
+                                </button>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
             </div>
 

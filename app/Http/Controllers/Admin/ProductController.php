@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\ListImage;
 use App\Models\ProductType;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -59,6 +60,28 @@ class ProductController extends Controller
         return view('Admin.product.update', compact('users', 'products', 'categories', 'producttypes'));
     }
 
+    public function destroy($id)
+    {
+        try {
+            $product = Product::findOrFail($id);
+
+            ListImage::where('id_product', $id)->delete();
+
+            if ($product->image && $product->image !== 'products/default_image.jpg') {
+                $imagePath = public_path('images/products/' . $product->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
+
+            $product->delete();
+
+            return redirect()->route('index-product')->with('success', 'Sản phẩm đã được xóa thành công!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors('Đã xảy ra lỗi khi xóa sản phẩm: ' . $e->getMessage());
+        }
+    }
+
 
     public function store(Request $request)
     {
@@ -66,7 +89,9 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'discount' => 'required|integer|min:0|max:100',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Ảnh đại diện
+            'list_image' => 'nullable|array', // Mảng ảnh phụ
+            'list_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra từng ảnh phụ
             'amount' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
             'id_category' => 'required|exists:categories,id',
@@ -74,31 +99,46 @@ class ProductController extends Controller
         ]);
 
         try {
+            // Xử lý ảnh đại diện
             $imagePath = null;
-
             if ($request->hasFile('image')) {
-                if ($imagePath && file_exists(public_path('images/' . $imagePath))) {
-                    unlink(public_path('images/' . $imagePath));
-                }
-
-                // Xử lý và lưu ảnh mới
                 $image = $request->file('image');
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('images/products'), $imageName);
-                $imagePath = 'products/' . $imageName;  // Lưu đường dẫn ảnh
+                $imagePath = 'products/' . $imageName;
+            } else {
+                $imagePath = 'products/default_image.jpg'; // Ảnh mặc định nếu không có ảnh đại diện
             }
 
             // Tạo sản phẩm mới
-            Product::create([
+            $product = Product::create([
                 'name' => $validated['name'],
                 'discount' => $validated['discount'],
                 'description' => $validated['description'] ?? null,
-                'image' => $imagePath,
+                'image' => $imagePath, // Lưu ảnh đại diện
                 'amount' => $validated['amount'],
                 'price' => $validated['price'],
                 'id_category' => $validated['id_category'],
                 'id_producttype' => $validated['id_producttype'],
             ]);
+
+            // Xử lý ảnh phụ (list_image)
+            if ($request->hasFile('list_image')) {
+                $imagePaths = [];
+                foreach ($request->file('list_image') as $image) {
+                    $imageName = time() . rand(1000, 9999) . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('images/products'), $imageName);
+                    $imagePaths[] = 'products/' . $imageName;
+                }
+
+                // Lưu danh sách hình ảnh phụ vào bảng list_images
+                foreach ($imagePaths as $path) {
+                    ListImage::create([
+                        'id_product' => $product->id,
+                        'image_path' => $path,
+                    ]);
+                }
+            }
 
             return redirect()->route('index-product')->with('success', 'Sản phẩm đã được thêm thành công!');
         } catch (\Exception $e) {
@@ -106,13 +146,16 @@ class ProductController extends Controller
         }
     }
 
+
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'discount' => 'required|integer|min:0|max:100',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Ảnh đại diện
+            'list_image' => 'nullable|array', // Mảng ảnh phụ
+            'list_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra từng ảnh phụ
             'amount' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
             'id_category' => 'required|exists:categories,id',
@@ -120,39 +163,62 @@ class ProductController extends Controller
         ]);
 
         try {
-            $products = Product::findOrFail($id); // Tìm sản phẩm theo ID
-            $imagePath = $products->image; // Đường dẫn ảnh hiện tại
+            // Tìm sản phẩm cần cập nhật
+            $product = Product::findOrFail($id);
 
+            // Xử lý ảnh đại diện (nếu có thay đổi)
+            $imagePath = $product->image; // Giữ nguyên ảnh cũ nếu không có ảnh mới
             if ($request->hasFile('image')) {
-                // Xóa ảnh cũ nếu tồn tại
-                if ($imagePath && file_exists(public_path('images/' . $imagePath))) {
-                    unlink(public_path('images/' . $imagePath));
+                // Xóa ảnh cũ nếu có
+                if (file_exists(public_path('images/products/' . $product->image))) {
+                    unlink(public_path('images/products/' . $product->image));
                 }
-
-                // Xử lý và lưu ảnh mới
+                // Xử lý ảnh mới
                 $image = $request->file('image');
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('images/products'), $imageName);
-                $imagePath = 'products/' . $imageName; // Cập nhật đường dẫn ảnh
+                $imagePath = 'products/' . $imageName;
             }
 
             // Cập nhật thông tin sản phẩm
-            $products->update([
+            $product->update([
                 'name' => $validated['name'],
                 'discount' => $validated['discount'],
                 'description' => $validated['description'] ?? null,
-                'image' => $imagePath,
+                'image' => $imagePath, // Cập nhật ảnh đại diện
                 'amount' => $validated['amount'],
                 'price' => $validated['price'],
                 'id_category' => $validated['id_category'],
                 'id_producttype' => $validated['id_producttype'],
             ]);
 
+            // Xử lý ảnh phụ (list_image)
+            if ($request->hasFile('list_image')) {
+                // Xóa tất cả ảnh phụ cũ trước khi thêm ảnh mới
+                ListImage::where('id_product', $product->id)->delete();
+
+                $imagePaths = [];
+                foreach ($request->file('list_image') as $image) {
+                    $imageName = time() . rand(1000, 9999) . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('images/products'), $imageName);
+                    $imagePaths[] = 'products/' . $imageName;
+                }
+
+                // Lưu danh sách hình ảnh phụ vào bảng list_images
+                foreach ($imagePaths as $path) {
+                    ListImage::create([
+                        'id_product' => $product->id,
+                        'image_path' => $path,
+                    ]);
+                }
+            }
+
             return redirect()->route('index-product')->with('success', 'Sản phẩm đã được cập nhật thành công!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors('Đã xảy ra lỗi khi cập nhật sản phẩm: ' . $e->getMessage());
         }
     }
+
 
 
 
