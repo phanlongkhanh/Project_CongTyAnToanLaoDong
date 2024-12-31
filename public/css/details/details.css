@@ -1,105 +1,121 @@
  /* CSS cho trang chi tiết sản phẩm */
  .container {
-    margin-top: 50px;
-}
+     margin-top: 50px;
+ }
 
-.product-name {
-    font-size: 28px;
-    font-weight: bold;
-    color: #333;
-}
+ .product-name {
+     font-size: 28px;
+     font-weight: bold;
+     color: #333;
+ }
 
-.product-category {
-    font-size: 16px;
-    color: #777;
-}
+ .product-category {
+     font-size: 16px;
+     color: #777;
+ }
 
-.product-price {
-    font-size: 24px;
-    margin-top: 15px;
-}
+ .product-price {
+     font-size: 24px;
+     margin-top: 15px;
+ }
 
-.product-price .original-price {
-    text-decoration: line-through;
-    color: #999;
-    margin-right: 10px;
-}
+ .product-price .original-price {
+     text-decoration: line-through;
+     color: #999;
+     margin-right: 10px;
+ }
 
-.product-price .discounted-price {
-    color: #d9534f;
-    font-weight: bold;
-}
+ .product-price .discounted-price {
+     color: #d9534f;
+     font-weight: bold;
+ }
 
-.product-description {
-    margin-top: 20px;
-}
+ .product-description {
+     margin-top: 20px;
+ }
 
-.product-description h5 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 10px;
-}
+ .product-description h5 {
+     font-size: 20px;
+     color: #333;
+     margin-bottom: 10px;
+ }
 
-.product-description p {
-    font-size: 16px;
-    color: #555;
-}
+ .product-description p {
+     font-size: 16px;
+     color: #555;
+ }
 
-.product-actions {
-    margin-top: 20px;
-}
+ .product-actions {
+     margin-top: 20px;
+ }
 
-.product-actions .btn {
-    padding: 10px 20px;
-    font-size: 16px;
-}
+ .product-actions .btn {
+     padding: 10px 20px;
+     font-size: 16px;
+ }
 
-.product-actions .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-}
+ .product-actions .btn-primary {
+     background-color: #007bff;
+     border-color: #007bff;
+ }
 
-.product-actions .btn-outline-danger {
-    border-color: #dc3545;
-    color: #dc3545;
-}
+ .product-actions .btn-outline-danger {
+     border-color: #dc3545;
+     color: #dc3545;
+ }
 
-.product-actions .btn:hover {
-    opacity: 0.9;
-}
+ .product-actions .btn:hover {
+     opacity: 0.9;
+ }
 
-.carousel-inner img {
-    max-height: 400px;
-    object-fit: cover;
-}
+ .carousel-inner img {
+     max-height: 400px;
+     object-fit: cover;
+ }
 
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-    background-color: #000;
-}
+ .carousel-control-prev-icon,
+ .carousel-control-next-icon {
+     background-color: #000;
+ }
 
-.reviews {
-    margin-top: 50px;
-}
+ .reviews {
+     margin-top: 50px;
+ }
 
-.reviews h4 {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 20px;
-}
+ .reviews h4 {
+     font-size: 22px;
+     color: #333;
+     margin-bottom: 20px;
+ }
 
-.review {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-}
+ .review {
+     border-bottom: 1px solid #ddd;
+     padding-bottom: 15px;
+     margin-bottom: 15px;
+ }
 
-.review-user {
-    font-weight: bold;
-    font-size: 16px;
-}
+ .review-user {
+     font-weight: bold;
+     font-size: 16px;
+ }
 
-.review-content p {
-    font-size: 16px;
-    color: #555;
-}
+ .review-content p {
+     font-size: 16px;
+     color: #555;
+ }
+
+ .thumbnail-btn {
+     border: none;
+     padding: 0;
+     margin: 0 5px;
+     cursor: pointer;
+ }
+
+ .thumbnail-btn img {
+     transition: transform 0.3s ease;
+ }
+
+ .thumbnail-btn img:hover {
+     transform: scale(1.1);
+     border: 2px solid #007bff;
+ }
