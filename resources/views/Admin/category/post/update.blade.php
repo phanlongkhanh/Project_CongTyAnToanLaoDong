@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h2 class="mt-4">Cập Nhật Danh Mục Bài Viết</h2>
+        <h2 class="mt-4 text-center">Cập Nhật Danh Mục Bài Viết</h2>
 
         <!-- Hiển thị thông báo thành công -->
         @if (session('success'))
@@ -34,7 +34,7 @@
                 @enderror
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-3 text-center">
                 <button type="submit" class="btn btn-success">Cập Nhật Danh Mục</button>
                 <a href="{{ route('index-category-post') }}" class="btn btn-secondary">Quay Lại</a>
             </div>
