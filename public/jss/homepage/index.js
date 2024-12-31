@@ -1,24 +1,35 @@
+let currentIndex = 1; // Bắt đầu từ hình thứ hai (do đã clone hình đầu tiên)
 const slides = document.querySelector('.slides');
-const images = document.querySelectorAll('.slides img');
-let currentIndex = 0;
-
-function showSlide(index) {
-    if (index >= images.length) {
-        currentIndex = 0;
-    } else if (index < 0) {
-        currentIndex = images.length - 1;
-    } else {
-        currentIndex = index;
-    }
-    const offset = -currentIndex * 100;
-    slides.style.transform = `translateX(${offset}%)`;
-}
+const totalImages = document.querySelectorAll('.slides img').length;
 
 function nextSlide() {
-    showSlide(currentIndex + 1);
+    if (currentIndex === totalImages -7) {
+        // Khi đến hình cuối cùng, chuyển về hình đầu tiên
+        currentIndex = 1; 
+        updateSlider();
+        setTimeout(() => {
+            slides.style.transition = 'transform 0.5s ease-in-out'; // Bật lại hiệu ứng chuyển tiếp
+        }, 50);
+    } else {
+        currentIndex++;
+        updateSlider();
+    }
 }
 
 function prevSlide() {
-    showSlide(currentIndex - 1);
+    if (currentIndex === 0) {
+        // Khi đến hình đầu tiên, chuyển về hình cuối cùng
+        currentIndex = totalImages -7;
+        updateSlider();
+        setTimeout(() => {
+            slides.style.transition = 'transform 0.5s ease-in-out'; // Bật lại hiệu ứng chuyển tiếp
+        }, 50);
+    } else {
+        currentIndex--;
+        updateSlider();
+    }
 }
 
+function updateSlider() {
+    slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+}

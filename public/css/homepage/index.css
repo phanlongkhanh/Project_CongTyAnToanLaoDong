@@ -1,19 +1,18 @@
 .slider {
-    width: 80%; 
-    margin: 0 auto;
-    overflow: hidden;
     position: relative;
+    width: 100%;
+    overflow: hidden;
 }
 
 .slides {
     display: flex;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease-in-out;
 }
 
 .slides img {
-    width: 80%; 
-    margin: 0 10px;
-    object-fit: cover; 
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .navigation {
@@ -26,7 +25,7 @@
 }
 
 .navigation button {
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     padding: 10px;
@@ -36,3 +35,4 @@
 .navigation button:hover {
     background-color: rgba(0, 0, 0, 0.7);
 }
+

@@ -1,13 +1,13 @@
 @extends('Layout.master')
 @section('title')
 @section('content')
-    <title>Khai Giảng</title>
+    <title>Thông Tin</title>
     <link rel="stylesheet" href="{{ asset('css/breadcrumb/breadcrumb.css') }}">
 
     <div class="breadcrumb">
         <a href="/">Trang chủ</a>
         <span>/</span>
-        <a href="{{ route('index-post-ceremony') }}">Khai Giảng</a>
+        <a href="{{ route('index-post-ceremony') }}">Thông Tin</a>
     </div>
 
     @if (session('error'))
@@ -21,7 +21,7 @@
         @foreach ($posts as $item)
             @if ($item->checkactive == 1)
                 <div class="post d-flex align-items-start mb-4">
-                    <div class="post-image me-3">
+                    <div class="post-image me-3 rounded shadow-lg">
                         <a href="{{ route('view-post-ceremony', ['slug' => $item->slug]) }}">
                             <img src="{{ asset('images/' . $item->image) }}" class="img-fluid rounded"
                                 alt="{{ $item->title }}">

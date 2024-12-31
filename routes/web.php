@@ -35,6 +35,8 @@ Route::prefix('trangchu')->group(function () {
 
 Route::prefix('sanpham')->group(function () {
     Route::get('/', [UserProductController::class, 'index'])->name('index-product-user');
+    Route::get('/{id}', [UserProductController::class, 'detail'])->name('details-product-user');
+
 });
 
 
@@ -55,8 +57,9 @@ Route::prefix('admin')->group(function () {
 Route::prefix('product')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('index-product');
     Route::get('/create', [ProductController::class, 'create'])->name('create-product');
-    Route::get('/update', [ProductController::class, 'update'])->name('update-product');
     Route::post('/add', [ProductController::class, 'store'])->name('store-product');
+    Route::get('/{id}', [ProductController::class, 'edit'])->name('edit-product');
+    Route::PUT('/{id}', action: [ProductController::class, 'update'])->name('update-product');
     Route::get('active/{id}', [ProductController::class, 'Active'])->name('active-product');
 
 });
@@ -77,7 +80,7 @@ Route::prefix('tintuc')->group(function () {
 
 });
 
-Route::prefix('khaigiang')->group(function () {
+Route::prefix('thongtin')->group(function () {
     Route::get('/', action: [PostCeremonyController::class, 'index'])->name('index-post-ceremony');
     Route::get('/{slug}', [PostCeremonyController::class, 'view'])->name('view-post-ceremony');
 

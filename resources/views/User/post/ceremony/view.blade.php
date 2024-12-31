@@ -1,14 +1,14 @@
 @extends('Layout.master')
 @section('title')
 @section('content')
-
+<title>Bài Viết</title>
 
     <link rel="stylesheet" href="{{ asset('css/breadcrumb/breadcrumb.css') }}">
 
     <div class="breadcrumb">
         <a href="/">Trang chủ</a>
         <span>/</span>
-        <a href="{{ route('index-post-ceremony') }}">Khai Giảng</a>
+        <a href="{{ route('index-post-ceremony') }}">Thông Tin</a>
         <span>/</span>
         <a href="">Bài Viết</a>
     </div>

@@ -20,7 +20,7 @@
         @foreach ($posts as $item)
             @if ($item->checkactive == 1)
                 <div class="post d-flex align-items-start mb-4">
-                    <div class="post-image me-3">
+                    <div class="post-image me-3 rounded shadow-lg">
                         <a href="{{ route('view-post-news', ['slug' => $item->slug]) }}">
                             <img src="{{ asset('images/' . $item->image) }}" class="img-fluid rounded"
                                 alt="{{ $item->title }}">
