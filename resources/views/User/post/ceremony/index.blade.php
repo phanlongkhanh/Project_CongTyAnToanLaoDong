@@ -17,6 +17,7 @@
     @endif
 
     <div class="posts-container">
+
         @foreach ($posts as $item)
             @if ($item->checkactive == 1)
                 <div class="post d-flex align-items-start mb-4">
@@ -51,7 +52,6 @@
         @else
             {{ $posts->links('pagination::bootstrap-4') }}
         @endif
-
     </div>
 
 @endsection
