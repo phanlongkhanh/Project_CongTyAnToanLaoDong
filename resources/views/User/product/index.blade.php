@@ -3,6 +3,8 @@
 @section('content')
     <title>Sản Phẩm</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/breadcrumb/breadcrumb.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product/product1.css') }}">
@@ -88,30 +90,55 @@
             <!-- Product Grid -->
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="product-card">
-                            <img src="{{asset('images/h1.jpg')}}" alt="Product Image">
-                            <h6>TiVi 42in Taylor All Star</h6>
-                            <p class="product-discount">1.900.000đ <span class="product-price">2.139.000đ</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="product-card">
-                            <img src="{{asset('images/h2.jpg')}}" alt="Product Image">
-                            <h6>Tivi 42in All Star Classic</h6>
-                            <p class="product-discount">1.309.000đ <span class="product-price">1.500.000đ</span></p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="product-card">
-                            <img src="{{asset('images/h3.jpg')}}" alt="Product Image">
-                            <h6>Tivi 52in All Star High Top</h6>
-                            <p class="product-discount">4.399.000đ</p>
-                        </div>
-                    </div>
+                    @foreach ($products as $item)
+                        @if ($item->checkactive == 1)
+                            <div class="col-md-4 mb-4">
+                                <div class="product-card position-relative">
+                                    <!-- Phần giảm giá -->
+                                    @if ($item->discount > 0)
+                                        <div class="discount-badge position-absolute top-0 end-0 bg-danger text-white p-2">
+                                            -{{ $item->discount }}%
+                                        </div>
+                                    @endif
+                                    <img src="{{ asset('images/' . $item->image) }}" alt="Product Image"
+                                        class="img-fluid">
+                                    <h6>{{ Str::limit($item->name, 40) }}</h6>
+                                    <p class="price">
+                                        @if ($item->discount > 0)
+                                            <span class="product-price">{{ number_format($item->price) }} VND</span>
+
+                                            <span
+                                                class="discounted-price text-danger text-nowrap">{{ number_format($item->price - ($item->price * $item->discount) / 100) }}
+                                                VND</span>
+                                        @else
+                                            <span class="product-price">{{ number_format($item->price) }} VND</span><br>
+                                            <span class="price text-danger text-nowarp">{{ number_format($item->price) }}
+                                                VND</span>
+                                        @endif
+                                    </p>
+                                    <!-- Nút thêm vào giỏ hàng và yêu thích -->
+                                    <div class="product-actions">
+                                        <button class="btn btn-primary add-to-cart" onclick="confirmAddToCart()">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                        <button class="btn btn-outline-danger add-to-favorites"
+                                            onclick="confirmAddToFavorites()">
+                                            <i class="fas fa-heart"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <span>Không Có Sản Phẩm</span>
+                        @endif
+                    @endforeach
                 </div>
             </div>
+
         </div>
     </div>
 
 @endsection
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+

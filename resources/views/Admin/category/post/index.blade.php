@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container">
-        <h2 class="mt-4">Quản Lý Danh Mục Bài Viết</h2>
+        <h2 class="mt-4 text-center">Quản Lý Danh Mục Bài Viết</h2>
         <br>
 
         <!-- Thêm danh mục -->

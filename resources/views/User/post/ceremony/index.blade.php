@@ -41,13 +41,17 @@
             @endif
         @endforeach
 
-        <div class="d-flex justify-content-center">
-            {{ $posts->links('pagination::bootstrap-4') }}
-        </div>
 
         @if ($posts->isEmpty())
             <div>Không Có Bài Viết Nào</div>
         @endif
+
+        @if ($posts->isEmpty())
+            <p> </p>
+        @else
+            {{ $posts->links('pagination::bootstrap-4') }}
+        @endif
+
     </div>
 
 @endsection

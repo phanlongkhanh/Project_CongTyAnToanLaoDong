@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <h2 class="mt-4 text-center">Thêm Mới Danh Mục Sản Phẩm</h2>
+    <h2 class="mt-4 text-center">Thêm Mới Loại Sản Phẩm</h2>
 
     <!-- Hiển thị thông báo thành công -->
     @if(session('success'))
@@ -13,10 +13,10 @@
         </div>
     @endif
 
-    <form action="{{route('store-category-product')}}" method="POST">
+    <form action="{{route('store-producttypes')}}" method="POST">
         @csrf
         <div class="form-group">
-            <label for="name">Tên Danh Mục</label>
+            <label for="name">Tên Loại Sản Phẩm</label>
             <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
             @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>
@@ -32,8 +32,8 @@
         </div>
 
         <div class="form-group mt-3 text-center">
-            <button type="submit" class="btn btn-success">Lưu Danh Mục</button>
-            <a href="{{ route('index-category-product') }}" class="btn btn-secondary">Quay Lại</a>
+            <button type="submit" class="btn btn-success">Lưu</button>
+            <a href="{{ route('index-producttypes') }}" class="btn btn-secondary">Quay Lại</a>
         </div>
     </form>
 </div>

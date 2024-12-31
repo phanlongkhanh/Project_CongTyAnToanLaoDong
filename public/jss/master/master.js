@@ -35,3 +35,57 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+// Xác nhận thêm vào giỏ hàng
+function confirmAddToCart() {
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn thêm vào giỏ hàng?',
+        text: "Sản phẩm sẽ được thêm vào giỏ hàng của bạn.",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Thêm',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Logic to add product to the cart
+            console.log('Sản phẩm đã được thêm vào giỏ hàng');
+            Swal.fire({
+                title: 'Thêm vào giỏ hàng thành công!',
+                text: 'Sản phẩm đã được thêm vào giỏ hàng.',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                timer: 5000,
+                timerProgressBar: true,
+            });
+        }
+    });
+}
+
+// Xác nhận thêm vào yêu thích
+function confirmAddToFavorites() {
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn thêm vào yêu thích?',
+        text: "Sản phẩm sẽ được thêm vào danh sách yêu thích của bạn.",
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Thêm',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Logic to add product to the favorites
+            console.log('Sản phẩm đã được thêm vào yêu thích');
+            Swal.fire({
+                title: 'Thêm vào yêu thích thành công!',
+                text: 'Sản phẩm đã được thêm vào yêu thích.',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                timer: 5000,
+                timerProgressBar: true,
+            });
+        }
+    });
+}

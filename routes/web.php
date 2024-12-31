@@ -13,6 +13,7 @@ use App\Http\Controllers\User\PostNewController;
 use App\Http\Controllers\User\PostCeremonyController;
 use App\Http\Controllers\User\UserProductController;
 use App\Http\Controllers\Admin\CategoryProductController;
+use App\Http\Controllers\Admin\ProductTypeController;
 
 
 
@@ -56,6 +57,8 @@ Route::prefix('product')->group(function () {
     Route::get('/create', [ProductController::class, 'create'])->name('create-product');
     Route::get('/update', [ProductController::class, 'update'])->name('update-product');
     Route::post('/add', [ProductController::class, 'store'])->name('store-product');
+    Route::get('active/{id}', [ProductController::class, 'Active'])->name('active-product');
+
 });
 
 Route::prefix('post')->group(function () {
@@ -96,5 +99,14 @@ Route::prefix('category-product')->group(function () {
     Route::get('/create', action:[CategoryProductController::class, 'create'])->name('create-category-product');
     Route::post('/add', action: [CategoryProductController::class, 'store'])->name('store-category-product');
     Route::delete('/{id}', [CategoryProductController::class, 'destroy'])->name('destroy-category-product');
+});
 
+
+Route::prefix('product-type')->group(function () {
+    Route::get('/', [ProductTypeController::class, 'index'])->name('index-producttypes');
+    Route::get('/create', [ProductTypeController::class, 'create'])->name('create-producttypes');
+    Route::post('/add', action: [ProductTypeController::class, 'store'])->name('store-producttypes');
+    Route::delete('/{id}', [ProductTypeController::class, 'destroy'])->name('destroy-producttypes');
+    Route::get('/{id}', [ProductTypeController::class, 'edit'])->name('edit-productypes');
+    Route::put('/{id}', [ProductTypeController::class, 'update'])->name('update-producttypes');
 });

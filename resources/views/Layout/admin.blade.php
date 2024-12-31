@@ -39,7 +39,7 @@
                     <i class="fas fa-cogs"></i> Quản Lý Sản Phẩm
                 </a>
 
-                <a href="#"
+                <a href="{{route('index-producttypes')}}"
                     class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fa fa-cart-arrow-down"></i> Loại Sản Phẩm
                 </a>

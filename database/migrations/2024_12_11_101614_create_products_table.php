@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image')->nullable()->comment('Hình ảnh');
             $table->unsignedBigInteger(column: 'amount')->comment('Số lượng');
             $table->unsignedBigInteger(column: 'price')->comment('Giá tiền');
+            $table->boolean('checkactive')->default(true)->comment('Check hoạt động');
             $table->unsignedBigInteger('id_category')->comment('Danh mục sản phẩm');
             $table->unsignedBigInteger('id_producttype')->comment('Loại Sản Phẩm');
             $table->timestamps();
