@@ -30,7 +30,7 @@
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
                 <!-- Danh mục sản phẩm -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
+                <a href="{{route('index-category-product')}}" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-list"></i> Danh Mục Sản Phẩm
                 </a>
                 <!-- Quản lý Sản phẩm -->
