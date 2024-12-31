@@ -37,7 +37,8 @@
                         <td>
                             <!-- Sửa danh mục -->
                             <a href="#" class="btn btn-warning btn-sm"
-                                onclick="confirmEdit('#')">Sửa</a>
+                                onclick="confirmEdit('{{ route('edit-category-product', ['id' => Crypt::encrypt($item->id)]) }}')">Sửa</a>
+
 
                             <!-- Xóa danh mục -->
                             <form id="delete-form-{{ $item->id }}"

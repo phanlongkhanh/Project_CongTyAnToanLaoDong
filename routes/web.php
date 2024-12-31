@@ -96,5 +96,8 @@ Route::prefix('category-product')->group(function () {
     Route::get('/create', action:[CategoryProductController::class, 'create'])->name('create-category-product');
     Route::post('/add', action: [CategoryProductController::class, 'store'])->name('store-category-product');
     Route::delete('/{id}', [CategoryProductController::class, 'destroy'])->name('destroy-category-product');
-
+    Route::get('/{id}', [CategoryProductController::class, 'edit'])->name('edit-category-product');
+    Route::put('/{id}', [CategoryProductController::class, 'update'])->name('update-category-product');
 });
+
+
