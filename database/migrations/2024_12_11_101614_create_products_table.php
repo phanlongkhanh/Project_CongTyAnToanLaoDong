@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('name')->comment('Tên Sản Phẩm');
             $table->unsignedBigInteger('discount')->comment('Giảm giá');
             $table->text('description')->nullable()->comment('Mô tả');  
+            $table->string('image')->nullable()->comment('Hình ảnh');
             $table->unsignedBigInteger(column: 'amount')->comment('Số lượng');
             $table->unsignedBigInteger(column: 'price')->comment('Giá tiền');
             $table->unsignedBigInteger('id_category')->comment('Danh mục sản phẩm');
+            $table->unsignedBigInteger('id_producttype')->comment('Loại Sản Phẩm');
             $table->timestamps();
         });
     }

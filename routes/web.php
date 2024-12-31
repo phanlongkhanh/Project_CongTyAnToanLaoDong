@@ -12,8 +12,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\PostNewController;
 use App\Http\Controllers\User\PostCeremonyController;
 use App\Http\Controllers\User\UserProductController;
-
-
+use App\Http\Controllers\Admin\CategoryProductController;
 
 
 
@@ -56,6 +55,7 @@ Route::prefix('product')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('index-product');
     Route::get('/create', [ProductController::class, 'create'])->name('create-product');
     Route::get('/update', [ProductController::class, 'update'])->name('update-product');
+    Route::post('/add', [ProductController::class, 'store'])->name('store-product');
 });
 
 Route::prefix('post')->group(function () {
@@ -84,9 +84,17 @@ Route::prefix('khaigiang')->group(function () {
 Route::prefix('category-post')->group(function () {
     Route::get('/', [CategoryPostController::class, 'index'])->name('index-category-post');
     Route::get('/create', [CategoryPostController::class, 'create'])->name('create-category-post');
-    Route::post('/add', [CategoryPostController::class, 'store'])->name('store-category-post');
+    Route::post('/add', action: [CategoryPostController::class, 'store'])->name('store-category-post');
     Route::delete('/{id}', [CategoryPostController::class, 'destroy'])->name('destroy-category-post');
     Route::get('/{id}', [CategoryPostController::class, 'edit'])->name('edit-category-post');
     Route::put('/{id}', [CategoryPostController::class, 'update'])->name('update-category-post');
+});
+
+
+Route::prefix('category-product')->group(function () {
+    Route::get('/', [CategoryProductController::class, 'index'])->name('index-category-product');
+    Route::get('/create', action:[CategoryProductController::class, 'create'])->name('create-category-product');
+    Route::post('/add', action: [CategoryProductController::class, 'store'])->name('store-category-product');
+    Route::delete('/{id}', [CategoryProductController::class, 'destroy'])->name('destroy-category-product');
 
 });
