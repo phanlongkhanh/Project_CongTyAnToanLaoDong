@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CategoryProductController extends Controller
@@ -59,4 +60,42 @@ class CategoryProductController extends Controller
             return redirect()->route('index-category-product')->with('error', 'Đơn vị vận chuyển không tồn tại.');
         }
     }
+    public function edit($encryptedId)
+    {
+        try {
+            // Giải mã ID
+            $id = Crypt::decrypt($encryptedId);
+        } catch (DecryptException $e) {
+            return redirect()->route('index-category-product')->with('error', 'Không tìm thấy danh mục với ID này.');
+        }
+
+        // Tìm kiếm danh mục với ID giải mã
+        $category = Category::find($id);
+
+        if (!$category) {
+            return redirect()->route('index-category-product')->with('error', 'Danh mục không tồn tại.');
+        }
+
+        $users = Auth::check() ? Auth::user()->name : null;
+
+        // Trả về view để chỉnh sửa danh mục
+        return view('Admin.category.product.update', compact('category', 'users'));
+    }
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string|max:255',
+    ]);
+
+    $category_product = Category::findOrFail($id);
+
+    $category_product->update([
+        'name' => $request->name,
+        'description' => $request->description,
+    ]);
+
+    return redirect()->route('index-category-product')->with('success', 'Danh mục đã được cập nhật thành công!');
+}
+
 }
