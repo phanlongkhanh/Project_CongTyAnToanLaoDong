@@ -56,24 +56,28 @@
         <div class="cart-container">
             <a href="{{ route('index-cart') }}" class="cart-icon">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
+                <span class="cart-count">{{ $count_carts}}</span>
             </a>
             <div class="cart-dropdown">
                 <ul>
                     <p class="text-danger">Sản Phẩm Mới Thêm:</p>
                     <hr>
-                    {{-- @foreach ($products as $item)
-                    <a href="#">
-                        <li class="cart-item">
-                            <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}">
-                            <div class="item-details">
-                                <span class="item-name">{{ Str::limit($item->name, 15) }}</span>
-                                <span class="item-price">{{ number_format($item->price) }}₫</span>
-                            </div>
-                        </li>
-                    </a>
-                    <hr>
-                    @endforeach --}}
+                    @foreach ($carts as $item)
+                        @if ($item->product)
+                            <!-- Kiểm tra xem products có tồn tại không -->
+                            <li class="cart-item">
+                                <img src="{{ asset('images/' . $item->product->image) }}"
+                                    alt="{{ $item->product->name }}">
+                                <div class="item-details">
+                                    <span class="item-name">{{ Str::limit($item->product->name, 15) }}</span>
+                                    <span class="item-price">{{ number_format($item->product->price) }}₫</span>
+                                </div>
+                            </li>
+                            <hr>
+                        @else
+                            <p>Product not available</p> <!-- Hoặc xử lý khi không có sản phẩm -->
+                        @endif
+                    @endforeach
                 </ul>
                 <a href="{{ route('index-cart') }}" class="view-cart">Xem Giỏ Hàng</a>
             </div>
@@ -91,7 +95,7 @@
         <!-- Thêm Chuông Thông Báo -->
         <a href="#" class="notification-icon">
             <i class="fas fa-bell"></i>
-            <span class="notification-count">5</span>
+            <span class="notification-count">0</span>
         </a>
     </div>
 

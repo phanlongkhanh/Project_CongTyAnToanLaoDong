@@ -91,16 +91,17 @@
 
             <div class="form-group">
                 <label>Mô tả sản phẩm</label>
-                <textarea class="form-control" id="editor_js" name="description" rows="3"
-                    placeholder="VNhập mô tả sản phẩm...">{{ old('description', $products->description) }}</textarea>
+                <textarea class="form-control" id="editor_js" name="description" rows="3" placeholder="VNhập mô tả sản phẩm...">{{ old('description', $products->description) }}</textarea>
             </div>
 
             <div class="form-group">
                 <label for="image">Hình ảnh</label>
                 <input type="file" class="form-control form-control-lg" id="image" name="image">
                 @if ($products->image)
-                    <p class="mt-2">Hình ảnh hiện tại: <img src="{{ asset('images/' . $products->image) }}"
-                            alt="Hình ảnh sản phẩm" class="img-thumbnail" style="max-height: 150px;"></p>
+                    <p class="mt-2">Hình ảnh hiện tại:
+                        <img src="{{ asset('images/' . $products->image) }}" alt="Hình ảnh sản phẩm" class="img-thumbnail"
+                            style="max-height: 150px;">
+                    </p>
                 @endif
                 <small class="text-muted">Nếu không tải ảnh, hệ thống sẽ sử dụng ảnh mặc định.</small>
             </div>
@@ -109,9 +110,23 @@
                 <label for="list_image">Danh sách Hình Ảnh</label>
                 <input type="file" class="form-control form-control-lg" id="list_image" name="list_image[]" multiple>
                 <small class="text-muted">Chọn nhiều hình ảnh (Nếu không chọn, sẽ không có hình ảnh thêm).</small>
+
+                @if ($list_images->count() > 0)
+                    <div class="mt-2">
+                        <strong>Ảnh hiện tại:</strong>
+                        <div class="row">
+                            @foreach ($list_images as $image)
+                                <div class="col-md-3">
+                                    <img src="{{ asset('images/' . $image->image_path) }}" alt="Ảnh phụ"
+                                        class="img-thumbnail" style="max-height: 150px;">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
             </div>
 
-         
+
             <div class="text-center mt-4">
                 <button type="submit" class="btn btn-warning btn-lg">Cập nhật sản phẩm</button>
                 <a href="{{ route('index-product') }}" class="btn btn-secondary btn-lg ml-3">Hủy</a>

@@ -27,7 +27,6 @@
                                     alt="Product Image">
                             </div>
                         @endforeach
-
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#productImages"
                         data-bs-slide="prev">
@@ -39,7 +38,6 @@
                         <span class="carousel-control-next-icon " aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
-
                     <div class="mt-3">
                         <div class="d-flex justify-content-center">
                             <button type="button" data-bs-target="#productImages" data-bs-slide-to="0"
