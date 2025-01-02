@@ -1,0 +1,23 @@
+.table td,
+.table th {
+    vertical-align: middle;
+    line-height: 1.5;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.total-price {
+    white-space: nowrap;
+}
+
+.price {
+    white-space: nowrap;
+
+}
+
+.productName {
+    white-space: nowrap;
+
+}

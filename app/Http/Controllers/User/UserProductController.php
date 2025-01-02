@@ -8,6 +8,7 @@ use App\Models\ProductType;
 use Illuminate\Http\Request;
 use App\Models\CategoryPost;
 use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
@@ -26,7 +27,9 @@ class UserProductController extends Controller
         $categories = Category::all();
         $products = Product::all();
         $producttypes = ProductType::all();
-        return view('User.product.index', compact('category_posts', 'products', 'categories', 'producttypes'));
+        $carts = Cart::paginate(5);
+        $count_carts = Cart::count();
+        return view('User.product.index', compact('count_carts','category_posts', 'products', 'categories', 'producttypes','carts'));
     }
 
     public function detail($encryptedId)
@@ -39,14 +42,15 @@ class UserProductController extends Controller
         }
 
         $products = Product::findOrFail($id);
-
+        $count_carts = Cart::count();
+        $carts = Cart::paginate(5);
         $users = Auth::check() ? Auth::user()->name : null;
 
         if (!$products) {
             return redirect()->route('index-product-user')->with('error', 'Không tìm thấy bài viết với ID này.');
         }
 
-        return view('User.product.detail', compact('products'));
+        return view('User.product.detail', compact('products','count_carts','carts'));
     }
 
 

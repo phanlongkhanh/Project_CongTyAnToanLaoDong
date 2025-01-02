@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('css/breadcrumb/breadcrumb.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product/product1.css') }}">
 
+
+
     <div class="breadcrumb">
         <a href="/">Trang chủ</a>
         <span>/</span>
@@ -106,11 +108,10 @@
                                     @endif
                                     <a href="{{ route('details-product-user', ['id' => Crypt::encrypt($item->id)]) }}')">
                                         <img src="{{ asset('images/' . $item->image) }}" alt="Product Image"
-                                         height="auto" width="80%"   class="img-fluid">
-
+                                            class="img-fluid">
                                     </a>
                                     <a href="{{ route('details-product-user', ['id' => Crypt::encrypt($item->id)]) }}')">
-                                        <h6>{{ Str::limit($item->name, 40) }}</h6>
+                                        <h6 class="mt-3">{{ Str::limit($item->name, 40) }}</h6>
                                     </a>
                                     <p class="price">
                                         @if ($item->discount > 0)
@@ -127,7 +128,14 @@
                                     </p>
                                     <!-- Nút thêm vào giỏ hàng và yêu thích -->
                                     <div class="product-actions">
-                                        <button class="btn btn-primary add-to-cart" onclick="confirmAddToCart('')">
+                                        <form action="{{ route('add-to-cart') }}" method="POST"
+                                            id="add-to-cart-form-{{ $item->id }}">
+                                            @csrf
+                                            <input type="hidden" name="id_product" value="{{ $item->id }}">
+                                            <input type="hidden" name="amount" value="1">
+                                        </form>
+                                        <button class="btn btn-primary add-to-cart" type="button"
+                                            onclick="confirmAddToCart({{ $item->id }})">
                                             <i class="fas fa-cart-plus"></i>
                                         </button>
                                         <button class="btn btn-outline-danger add-to-favorites"
@@ -152,4 +160,58 @@
     </div>
 
 @endsection
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function addToCart(productId) {
+        const form = document.getElementById('add-to-cart-form-' + productId);
+        const formData = new FormData(form);
+
+        fetch("{{ route('add-to-cart') }}", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire('Thành công!', data.success, 'success');
+                } else {
+                    Swal.fire('Lỗi!', data.error, 'error');
+                }
+            })
+            .catch(error => {
+                Swal.fire('Lỗi!', 'Có lỗi xảy ra, vui lòng thử lại!', 'error');
+            });
+    }
+</script>
