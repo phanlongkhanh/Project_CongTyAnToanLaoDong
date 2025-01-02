@@ -62,6 +62,8 @@
             <div class="col-md-6 ">
                 <h2 class="product-name">{{ $products->name }}</h2>
                 <p class="product-category">Thương Hiệu: {{ $products->productType->name }}</p>
+                <p class="product-category">Số Lượng: {{ $products->amount }}</p>
+
 
                 @if ($products->discount > 0)
                     <p class="product-discount">Giảm Giá: -{{ $products->discount }}%</p>

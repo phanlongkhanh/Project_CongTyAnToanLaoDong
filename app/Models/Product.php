@@ -28,5 +28,11 @@ class Product extends Model
     {
         return $this->hasMany(ListImage::class, 'id_product');
     }
+
+    // Mối quan hệ ngược lại với giỏ hàng
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'id_product');
+    }
      
 }

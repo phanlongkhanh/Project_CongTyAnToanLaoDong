@@ -15,6 +15,7 @@
 
 <body>
     <!-- Header -->
+
     <div class="header">
         <span>Email: phanlongkhanh.tdc2223@gmail.com</span>
     </div>
@@ -50,18 +51,42 @@
         <a href="{{ route('index-recruitment') }}">TUYỂN DỤNG</a>
         <a href="#">LIÊN HỆ</a>
 
-         <!-- Danh Sách Yêu Thích -->
-         <a href="#" class="heart-icon">
+
+        <!-- Thêm Giỏ hàng -->
+        <div class="cart-container">
+            <a href="{{ route('index-cart') }}" class="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <div class="cart-dropdown">
+                <ul>
+                    <p class="text-danger">Sản Phẩm Mới Thêm:</p>
+                    <hr>
+                    {{-- @foreach ($products as $item)
+                    <a href="#">
+                        <li class="cart-item">
+                            <img src="{{ asset('images/' . $item->image) }}" alt="{{ $item->name }}">
+                            <div class="item-details">
+                                <span class="item-name">{{ Str::limit($item->name, 15) }}</span>
+                                <span class="item-price">{{ number_format($item->price) }}₫</span>
+                            </div>
+                        </li>
+                    </a>
+                    <hr>
+                    @endforeach --}}
+                </ul>
+                <a href="{{ route('index-cart') }}" class="view-cart">Xem Giỏ Hàng</a>
+            </div>
+        </div>
+
+
+        <!-- Danh Sách Yêu Thích -->
+        <a href="#" class="heart-icon">
             <i class="fas fa-heart"></i>
             <span class="heart-count">0</span>
         </a>
 
 
-        <!-- Thêm Giỏ hàng -->
-        <a href="#" class="cart-icon">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="cart-count">3</span>
-        </a>
 
         <!-- Thêm Chuông Thông Báo -->
         <a href="#" class="notification-icon">
@@ -73,6 +98,13 @@
 
     <!-- Container -->
     <div class="container">
+
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
         @yield('content')
     </div>
 

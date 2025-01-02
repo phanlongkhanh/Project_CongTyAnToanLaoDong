@@ -19,6 +19,12 @@ class CategoryPostController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+
         if (!Auth::check()) {
             return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
         }
@@ -30,6 +36,12 @@ class CategoryPostController extends Controller
 
     public function create()
     {
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+
         if (!Auth::check()) {
             return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
         }
@@ -40,12 +52,20 @@ class CategoryPostController extends Controller
 
     public function edit($encryptedId)
     {
+
+        $user = auth()->user();
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+
         try {
             $id = Crypt::decrypt($encryptedId);
         } catch (DecryptException $e) {
             return redirect()->route('index-category-post')->with('error', 'Không tìm thấy bài viết với ID này.');
         }
+
         $category_posts = CategoryPost::find($id);
+
         $users = Auth::check() ? Auth::user()->name : null;
         if (!$category_posts) {
             return redirect()->route('index-category-post')->with('error', 'Không tìm thấy bài viết với ID này.');

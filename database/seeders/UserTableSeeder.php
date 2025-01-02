@@ -19,6 +19,7 @@ class UserTableSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('12345678'),
+            'id_role' => '1',
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -26,6 +27,15 @@ class UserTableSeeder extends Seeder
             'name' => 'qcv',
             'email' => 'quantrivien@gmail.com',
             'password' => Hash::make('12345678'),
+            'id_role' => '1',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        DB::table('users')->insert([
+            'name' => 'user',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('12345678'),
+            'id_role' => '2',
             'created_at' => now(),
             'updated_at' => now(),
         ]);

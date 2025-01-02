@@ -20,6 +20,13 @@ class PostController extends Controller
 {
     public function index()
     {
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+
+
         if (!Auth::check()) {
             return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
         }
@@ -30,6 +37,12 @@ class PostController extends Controller
     }
     public function create()
     {
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+
         $users = Auth::check() ? Auth::user()->name : null;
         $categories = CategoryPost::all();
         return view('Admin.post.create', compact('categories', 'users'));
@@ -73,13 +86,22 @@ class PostController extends Controller
 
     public function edit($encryptedId)
     {
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+
         try {
             $id = Crypt::decrypt($encryptedId);
         } catch (DecryptException $e) {
             return redirect()->route('index-post')->with('error', 'Không tìm thấy bài viết với ID này.');
         }
+
         $post = Post::find($id);
+
         $categories_posts = CategoryPost::all();
+        
         $users = Auth::check() ? Auth::user()->name : null;
         if (!$post) {
             return redirect()->route('index-post')->with('error', 'Không tìm thấy bài viết với ID này.');
