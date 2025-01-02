@@ -8,10 +8,17 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 class CategoryProductController extends Controller
 {
     public function index(){
+
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
 
         if (!Auth::check()) {
             return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
@@ -24,6 +31,12 @@ class CategoryProductController extends Controller
     }
 
     public function create(){
+        
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
         
         if (!Auth::check()) {
             return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
@@ -62,6 +75,13 @@ class CategoryProductController extends Controller
     }
     public function edit($encryptedId)
     {
+
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+
         try {
             // Giải mã ID
             $id = Crypt::decrypt($encryptedId);

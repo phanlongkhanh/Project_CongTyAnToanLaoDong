@@ -14,6 +14,8 @@ use App\Http\Controllers\User\PostCeremonyController;
 use App\Http\Controllers\User\UserProductController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\ProductTypeController;
+use App\Http\Controllers\User\CartController;
+
 
 
 
@@ -37,6 +39,11 @@ Route::prefix('sanpham')->group(function () {
     Route::get('/', [UserProductController::class, 'index'])->name('index-product-user');
     Route::get('/{id}', [UserProductController::class, 'detail'])->name('details-product-user');
 
+});
+
+Route::prefix('giohang')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('index-cart');
+    Route::post('/add', [CartController::class, 'addToCart'])->name('add-to-cart');
 });
 
 

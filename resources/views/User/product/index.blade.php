@@ -115,7 +115,7 @@
                                     <p class="price">
                                         @if ($item->discount > 0)
                                             <span class="product-price">{{ number_format($item->price) }} VND</span>
-
+                                            <br>
                                             <span
                                                 class="discounted-price text-danger text-nowrap">{{ number_format($item->price - ($item->price * $item->discount) / 100) }}
                                                 VND</span>
@@ -127,7 +127,7 @@
                                     </p>
                                     <!-- Nút thêm vào giỏ hàng và yêu thích -->
                                     <div class="product-actions">
-                                        <button class="btn btn-primary add-to-cart" onclick="confirmAddToCart()">
+                                        <button class="btn btn-primary add-to-cart" onclick="confirmAddToCart('')">
                                             <i class="fas fa-cart-plus"></i>
                                         </button>
                                         <button class="btn btn-outline-danger add-to-favorites"

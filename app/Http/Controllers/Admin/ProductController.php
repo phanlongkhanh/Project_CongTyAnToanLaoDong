@@ -19,17 +19,30 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class ProductController extends Controller
 {
     public function index()
-    {
+    {$user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+
         if (!Auth::check()) {
             return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
         }
+
         $products = Product::orderBy('created_at', 'desc')->get();
+
         $users = Auth::check() ? Auth::user()->name : null;
         return view('Admin.product.index', compact('users', 'products'));
     }
 
     public function create()
     {
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+
         if (!Auth::check()) {
             return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
         }
@@ -41,6 +54,12 @@ class ProductController extends Controller
     }
     public function edit($encryptedId)
     {
+        $user = auth()->user();
+
+        if (!$user || $user->id_role != 1) {
+            return redirect('/')->with('error', 'Bạn không có quyền truy cập trang này');
+        }
+        
         try {
             $id = Crypt::decrypt($encryptedId);
         } catch (DecryptException $e) {
