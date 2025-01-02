@@ -106,7 +106,7 @@
                                     @endif
                                     <a href="{{ route('details-product-user', ['id' => Crypt::encrypt($item->id)]) }}')">
                                         <img src="{{ asset('images/' . $item->image) }}" alt="Product Image"
-                                            class="img-fluid">
+                                         height="auto" width="80%"   class="img-fluid">
 
                                     </a>
                                     <a href="{{ route('details-product-user', ['id' => Crypt::encrypt($item->id)]) }}')">

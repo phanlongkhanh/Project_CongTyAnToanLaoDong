@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_product')->comment('Thông Tin Sản Phẩm');
-            $table->unsignedBigInteger('id_payment')->comment('Thanh Toán');
             $table->timestamps();
         });
     }

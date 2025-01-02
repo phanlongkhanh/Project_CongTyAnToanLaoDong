@@ -15,12 +15,12 @@
 
 
     <div class="row">
-        <div class="col-9">
+        <div class="col-10">
             @isset($posts)
                 <div class=" border border-solid-2">
 
                     <h1 class="text-danger text-center">{{ $posts->title }}</h1>
-                    <div class="text-center"><img src="{{ asset('images/' . $posts->image) }}" height="200" width="40%"
+                    <div class="text-center"><img src="{{ asset('images/' . $posts->image) }}" height="250" width="60%"
                             alt="{{ $posts->title }}"></div>
                     <div class="container">
                         <div class="container-fluid">
@@ -34,8 +34,7 @@
                 </div>
             @endisset
         </div>
-        <div class="col-3">
-
+        <div class="col-2">
             Nội Dung Cần Code
         </div>
     </div>

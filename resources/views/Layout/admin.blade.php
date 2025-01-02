@@ -29,17 +29,20 @@
                     class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a>
-                <!-- Danh mục sản phẩm -->
-                <a href="{{route('index-category-product')}}" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
-                    <i class="fas fa-list"></i> Danh Mục Sản Phẩm
-                </a>
+
                 <!-- Quản lý Sản phẩm -->
                 <a href="{{ route('index-product') }}"
                     class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-cogs"></i> Quản Lý Sản Phẩm
                 </a>
 
-                <a href="{{route('index-producttypes')}}"
+                <!-- Danh mục sản phẩm -->
+                <a href="{{ route('index-category-product') }}"
+                    class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
+                    <i class="fas fa-list"></i> Danh Mục Sản Phẩm
+                </a>
+
+                <a href="{{ route('index-producttypes') }}"
                     class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fa fa-cart-arrow-down"></i> Loại Sản Phẩm
                 </a>
