@@ -84,11 +84,19 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="description">Mô tả</label>
                 <textarea class="form-control form-control-lg" id="description" name="description" rows="4"
                     placeholder="Nhập mô tả sản phẩm">{{ old('description') }}</textarea>
+            </div> --}}
+
+            <div class="form-group">
+                <label>Mô tả sản phẩm</label>
+                <textarea class="form-control form-control-lg" id="editor_js" name="description" rows="4"
+                    placeholder="Nhập mô tả sản phẩm.">{{ old('description') }}</textarea>
             </div>
+
+
 
             <div class="form-group">
                 <label for="image">Hình ảnh</label>
@@ -108,6 +116,20 @@
             </div>
         </form>
     </div>
+
+
+
+
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script type="text/javascript">
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+        CKEDITOR.replace('editor_js', options);
+    </script>
 @endsection
 
 @push('styles')

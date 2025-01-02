@@ -86,12 +86,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|regex:/\S/',
             'discount' => 'required|integer|min:0|max:100',
-            'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Ảnh đại diện
-            'list_image' => 'nullable|array', // Mảng ảnh phụ
-            'list_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra từng ảnh phụ
+            'description' => 'nullable|string|regex:/\S/',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'list_image' => 'nullable|array',
+            'list_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', 
             'amount' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
             'id_category' => 'required|exists:categories,id',
@@ -150,12 +150,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|regex:/\S/',
             'discount' => 'required|integer|min:0|max:100',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Ảnh đại diện
-            'list_image' => 'nullable|array', // Mảng ảnh phụ
-            'list_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Kiểm tra từng ảnh phụ
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'list_image' => 'nullable|array',
+            'list_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'amount' => 'required|integer|min:1',
             'price' => 'required|integer|min:1',
             'id_category' => 'required|exists:categories,id',

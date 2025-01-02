@@ -5,13 +5,15 @@
 @section('content')
     <title>Chi Tiết Sản Phẩm</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/details/details.css') }}">
+    <div style="margin-top: -40px" class="breadcrumb">
+        <a href="/">Trang chủ</a>
+        <span>/</span>
+        <a href="{{ route('index-product-user') }}">Sản Phẩm</a>
+        <span>/</span>
+        <a href="">Chi Tiết Sản Phẩm</a>
+    </div>
 
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="row">
             <div class="col-md-6 border rounded shadow-lg">
                 <div id="productImages" class="carousel slide" data-bs-ride="carousel">
@@ -32,9 +34,9 @@
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#productImages"
+                    <button class="carousel-control-next " type="button" data-bs-target="#productImages"
                         data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="carousel-control-next-icon " aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
 
@@ -81,7 +83,7 @@
                 <hr>
                 <div class="product-description">
                     <h5>Mô Tả Sản Phẩm</h5>
-                    <p>{{ $products->description }}</p>
+                    <p>{!! $products->description !!}</p>
                 </div>
 
                 <div class="product-actions mt-4">
@@ -127,3 +129,9 @@
         }
     </script>
 @endsection
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('css/details/details.css') }}">
+<link rel="stylesheet" href="{{ asset('css/breadcrumb/breadcrumb.css') }}">

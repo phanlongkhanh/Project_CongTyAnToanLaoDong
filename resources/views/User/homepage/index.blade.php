@@ -27,11 +27,7 @@
             <button onclick="nextSlide()">&#10095;</button>
         </div>
     </div>
-
     <hr class="bg-danger shadow-lg">
-
-
-
 
 <script src="{{ asset('jss/homepage/index.js') }}"></script>
 @endsection
