@@ -301,3 +301,29 @@ body {
 .view-cart:hover {
     background-color: #d94a1e;
 }
+
+.profile-button {
+    position: fixed;
+    left: 10px;
+    bottom: 20px;
+    background-color: #56931f;
+    color: white;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 24px;
+    transition: background-color 0.3s;
+    z-index: 1000;
+}
+
+.profile-button:hover {
+    background-color: #4a7d1b;
+}
+
+.profile-button i {
+    font-size: 28px;
+}
