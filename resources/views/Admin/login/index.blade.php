@@ -43,7 +43,9 @@
             <div class="d-grid">
                 <button type="submit" class="btn btn-custom">Đăng Nhập</button>
             </div>
+          
             <div class="text-center text-white mt-3">
+                <a href="#" class="text-primary m-3">Đăng Ký?</a>
                 <a href="#" class="text-white">Forgot Password?</a>
             </div>
         </form>

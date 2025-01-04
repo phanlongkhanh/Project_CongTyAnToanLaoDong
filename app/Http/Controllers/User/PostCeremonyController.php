@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Cart;
+use Illuminate\Support\Facades\Auth;
 use App\Models\CategoryPost;
 
 class PostCeremonyController extends Controller
@@ -17,8 +19,11 @@ class PostCeremonyController extends Controller
         } else {
             $posts = collect();
         }
+        $count_carts = Cart::count();
+        $carts = Cart::paginate(5);
         $category_posts = CategoryPost::all();
-        return view('User.post.ceremony.index', compact('posts', 'category_posts'));
+        $users = Auth::user();
+        return view('User.post.ceremony.index', compact('posts', 'category_posts','count_carts','carts','users'));
     }
 
     public function view($slug)
@@ -28,7 +33,9 @@ class PostCeremonyController extends Controller
             return redirect()->route('index-post-ceremony')->with('error', 'Không tìm thấy bài viết với slug này.');
         }
         $category_posts = CategoryPost::all();
-
-        return view('User.post.ceremony.view', compact('posts', 'category_posts'));
+        $carts = Cart::paginate(5);
+        $count_carts = Cart::count();
+        $users = Auth::user();
+        return view('User.post.ceremony.view', compact('posts', 'category_posts',' count_carts','carts','users'));
     }
 }

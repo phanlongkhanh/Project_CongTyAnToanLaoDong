@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // Cập nhật tổng tiền khi thay đổi số lượng
-    $('.quantity').on('input', function() {
+    $('.quantity').on('input', function () {
         // Lấy số lượng (đảm bảo giá trị luôn là số dương)
         var quantity = parseInt($(this).val());
         if (isNaN(quantity) || quantity < 1) {
@@ -24,7 +24,7 @@ $(document).ready(function() {
     function updateTotalAmount() {
         var totalAmount = 0;
 
-        $('.total-price').each(function() {
+        $('.total-price').each(function () {
             // Lấy giá trị và cộng dồn
             totalAmount += parseInt($(this).text().replace(/[^\d]/g, ''));
         });
@@ -32,9 +32,23 @@ $(document).ready(function() {
         $('#total-amount').text(totalAmount.toLocaleString() + ' VNĐ');
     }
 
-    // Xóa sản phẩm
-    $('.remove-item').click(function() {
-        $(this).closest('tr').remove();
-        updateTotalAmount();
-    });
 });
+
+function confirmCheckout() {
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn thanh toán?',
+        text: "Sau khi thanh toán, đơn hàng sẽ được xử lý.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Thanh Toán',
+        cancelButtonText: 'Hủy'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Gửi form khi người dùng xác nhận
+            document.querySelector('form').submit();
+        }
+    });
+}
+

@@ -1,0 +1,25 @@
+.container {
+    max-width: 900px;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+.btn-danger {
+    background-color: #ff6f61;
+    border-color: #ff6f61;
+}
+
+.btn-danger:hover {
+    background-color: #ff4d40;
+    border-color: #ff4d40;
+}
+
+h3 {
+    color: #ff6f61;
+}
+
+.form-label {
+    font-weight: bold;
+}

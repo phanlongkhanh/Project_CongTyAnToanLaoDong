@@ -15,6 +15,8 @@ use App\Http\Controllers\User\UserProductController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\ProfileController;
+
 
 
 
@@ -44,7 +46,21 @@ Route::prefix('sanpham')->group(function () {
 Route::prefix('giohang')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index-cart');
     Route::post('/add', [CartController::class, 'addToCart'])->name('add-to-cart');
+    Route::get('/api/count-carts', [CartController::class, 'countCarts'])->name('count-carts');
+
 });
+
+Route::prefix('thongtincanhan')->group(function () {
+    Route::get('/', [ProfileController::class, 'index'])->name('index-profile');
+    Route::post('/{id}', [ProfileController::class, 'update'])->name('update-profile');
+
+});
+
+Route::prefix('profile-controlelr')->group(function () {
+    Route::post('/update-password/{id}', [ProfileController::class, 'updatePassword'])->name('update-password');
+    Route::post('/{id}', action: [ProfileController::class, 'UpdateImage'])->name('update-image');
+});
+
 
 
 Route::prefix('gioithieu')->group(function () {

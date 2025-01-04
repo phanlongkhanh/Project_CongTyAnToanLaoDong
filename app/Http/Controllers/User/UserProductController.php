@@ -29,7 +29,8 @@ class UserProductController extends Controller
         $producttypes = ProductType::all();
         $carts = Cart::paginate(5);
         $count_carts = Cart::count();
-        return view('User.product.index', compact('count_carts','category_posts', 'products', 'categories', 'producttypes','carts'));
+        $users = Auth::user();
+        return view('User.product.index', compact('count_carts','category_posts', 'products', 'categories', 'producttypes','carts','users'));
     }
 
     public function detail($encryptedId)
@@ -40,7 +41,7 @@ class UserProductController extends Controller
         } catch (DecryptException $e) {
             return redirect()->route('index-product-user')->with('error', 'Không tìm thấy bài viết với ID này.');
         }
-
+        $users = Auth::user();
         $products = Product::findOrFail($id);
         $count_carts = Cart::count();
         $carts = Cart::paginate(5);
@@ -50,7 +51,7 @@ class UserProductController extends Controller
             return redirect()->route('index-product-user')->with('error', 'Không tìm thấy bài viết với ID này.');
         }
 
-        return view('User.product.detail', compact('products','count_carts','carts'));
+        return view('User.product.detail', compact('products','count_carts','carts','users'));
     }
 
 

@@ -56,7 +56,7 @@
         <div class="cart-container">
             <a href="{{ route('index-cart') }}" class="cart-icon">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">{{ $count_carts}}</span>
+                <span class="cart-count">{{ $count_carts }}</span>
             </a>
             <div class="cart-dropdown">
                 <ul>
@@ -84,12 +84,28 @@
         </div>
 
 
+
+        @if ($users)
+            <a href="{{ route('index-profile') }}" class="profile-button">
+                <i class="fas fa-user"></i>
+            </a>
+        @else
+            <a href="{{ url('login') }}" class="profile-button">
+                <i class="fas fa-user"></i>
+            </a>
+        @endif
+
+        <!-- Đơn Hàng -->
+        <a href="#" class="heart-icon">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="heart-count">0</span>
+        </a>
+
         <!-- Danh Sách Yêu Thích -->
         <a href="#" class="heart-icon">
             <i class="fas fa-heart"></i>
             <span class="heart-count">0</span>
         </a>
-
 
 
         <!-- Thêm Chuông Thông Báo -->
