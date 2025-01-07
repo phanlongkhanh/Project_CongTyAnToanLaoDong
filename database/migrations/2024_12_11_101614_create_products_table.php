@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name')->comment('Tên Sản Phẩm');
-            $table->unsignedBigInteger('discount')->comment('Giảm giá');
+            $table->unsignedBigInteger(column: 'discount')->comment('Giảm giá');
             $table->text('description')->nullable()->comment('Mô tả');  
             $table->string('image')->nullable()->comment('Hình ảnh');
             $table->unsignedBigInteger(column: 'amount')->comment('Số lượng');

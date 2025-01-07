@@ -15,7 +15,7 @@
 
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-6 border rounded shadow-lg">
+            <div class="col-md-4 border rounded shadow-lg">
                 <div id="productImages" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -57,8 +57,8 @@
                 </div>
             </div>
 
-            <div class="col-md-6 ">
-                <h2 class="product-name">{{ $products->name }}</h2>
+            <div class="col-md-8">
+                <h2 class="product-name ">{{ $products->name }}</h2>
                 <p class="product-category">Thương Hiệu: {{ $products->productType->name }}</p>
                 <p class="product-category">Số Lượng: {{ $products->amount }}</p>
 

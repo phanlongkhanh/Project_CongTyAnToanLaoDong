@@ -16,6 +16,10 @@ use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\ProductTypeController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\ProfileController;
+use App\Http\Controllers\User\OrderController;
+use App\Http\Controllers\Admin\AdminOrderController;
+
+
 
 
 
@@ -49,6 +53,17 @@ Route::prefix('giohang')->group(function () {
     Route::get('/api/count-carts', [CartController::class, 'countCarts'])->name('count-carts');
 
 });
+
+Route::prefix('order')->group(function () {
+    Route::get('/', [AdminOrderController::class, 'index'])->name('index-order');
+});
+
+
+Route::prefix('dathang')->group(function () {
+    Route::post('/place-order', [OrderController::class, 'store'])->name('place-order');
+});
+
+
 
 Route::prefix('thongtincanhan')->group(function () {
     Route::get('/', [ProfileController::class, 'index'])->name('index-profile');
