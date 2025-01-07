@@ -33,6 +33,7 @@ class Order extends Model
         return $this->belongsTo(Product::class, 'product_id'); // Giả sử có cột 'product_id' trong bảng carts
     }
 
+ 
     // Mối quan hệ: Một đơn hàng thuộc về một người dùng
     public function user()
     {

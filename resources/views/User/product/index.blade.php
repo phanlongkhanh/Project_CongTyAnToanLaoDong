@@ -205,7 +205,9 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    Swal.fire('Thành công!', data.success, 'success');
+                    Swal.fire('Thành công!', data.success, 'success').then(() => {
+                        location.reload();
+                    });
                 } else {
                     Swal.fire('Lỗi!', data.error, 'error');
                 }
@@ -215,3 +217,4 @@
             });
     }
 </script>
+

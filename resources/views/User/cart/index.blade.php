@@ -1,7 +1,5 @@
 @extends('Layout.master')
-
 @section('title')
-
 @section('content')
     <title>Giỏ Hàng</title>
     <link rel="stylesheet" href="{{ asset('css/breadcrumb/breadcrumb.css') }}">
@@ -15,6 +13,12 @@
 
     <div class="container mt-5 shadow-lg p-3">
         <h2 class="text-center">Giỏ Hàng Của Bạn</h2>
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <form action="{{ route('place-order') }}" method="POST">
             @csrf
             <div class="table-responsive">
@@ -51,7 +55,14 @@
                                         VNĐ
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-danger remove-item" data-id="{{ $item->id }}">Xóa</button>
+                                        <form id="delete-form-{{ $item->id }}"
+                                            action="{{ route('destroy-carts', ['id' => $item->id]) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                                onclick="confirmDelete('{{ $item->id }}')">Xóa</button>
+                                        </form>
                                     </td>
                                     <!-- Hidden fields -->
                                     <input type="hidden" name="items[{{ $index }}][product_id]"
@@ -91,6 +102,33 @@
             </div>
         </form>
     </div>
+
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Bạn có chắc chắn?',
+                text: "Bạn không thể hoàn tác hành động này!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Xóa',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                    Swal.fire({
+                        title: 'Cập nhật thành công!',
+                        text: 'Bài viết đã được xóa.',
+                        icon: 'success',
+                        confirmButtonColor: '#3085d6',
+                        timer: 5000,
+                        timerProgressBar: true,
+                    });
+                }
+            });
+        }
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>

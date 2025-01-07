@@ -22,8 +22,8 @@ class PostNewController extends Controller
         } else {
             $posts = collect();
         }
-        $count_carts = Cart::count();
-        $carts = Cart::paginate(5);
+        $carts = Cart::where('id_user', Auth::id())->paginate(5);
+        $count_carts = Cart::where('id_user', Auth::id())->count();
         $users = Auth::user();
         $category_posts = CategoryPost::all();
         return view('User.post.news.index', compact('posts', 'category_posts', 'count_carts','carts','users'));
@@ -36,8 +36,8 @@ class PostNewController extends Controller
             return redirect()->route('index-post-news')->with('error', 'Không tìm thấy bài viết với slug này.');
         }
         $category_posts = CategoryPost::all();
-        $count_carts = Cart::count();
-        $carts = Cart::paginate(5);
+        $carts = Cart::where('id_user', Auth::id())->paginate(5);
+        $count_carts = Cart::where('id_user', Auth::id())->count();
         $users = Auth::user();
         return view('User.post.news.view', compact('posts', 'category_posts','count_carts','carts','users'));
     }

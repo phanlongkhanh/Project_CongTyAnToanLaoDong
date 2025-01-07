@@ -34,7 +34,7 @@
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Tài Khoản</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Mật Khẩu</label>

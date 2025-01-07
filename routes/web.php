@@ -51,8 +51,10 @@ Route::prefix('giohang')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index-cart');
     Route::post('/add', [CartController::class, 'addToCart'])->name('add-to-cart');
     Route::get('/api/count-carts', [CartController::class, 'countCarts'])->name('count-carts');
-
+    Route::delete('/{id}', action: [CartController::class, 'destroy'])->name('destroy-carts');
 });
+
+
 
 Route::prefix('order')->group(function () {
     Route::get('/', [AdminOrderController::class, 'index'])->name('index-order');
