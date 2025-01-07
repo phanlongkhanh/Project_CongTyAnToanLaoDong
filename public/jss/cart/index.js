@@ -8,13 +8,20 @@ $(document).ready(function () {
             $(this).val(quantity);
         }
 
-        // Lấy giá (xóa ký tự không cần thiết trước khi chuyển đổi)
-        var price = parseInt($(this).closest('tr').find('td:nth-child(3)').text().replace(/[^\d]/g,
-            ''));
+        // Lấy giá sản phẩm (tính theo giá đã giảm)
+        var price = parseInt($(this).closest('tr').find('td:nth-child(3)').text().replace(/[^\d]/g, ''));
+        var discount = parseInt($(this).closest('tr').find('input[name^="items["][name$="][discount]"]').val()); // Lấy giá trị giảm giá
 
-        // Tính toán tổng tiền
-        var total = quantity * price;
+        // Tính toán giá sau giảm
+        var discountedPrice = price - (price * discount / 100);
+
+        // Tính toán tổng tiền cho sản phẩm
+        var total = quantity * discountedPrice;
         $(this).closest('tr').find('.total-price').text(total.toLocaleString() + ' VNĐ');
+
+        // Cập nhật lại giá trị trong input "amount"
+        var rowIndex = $(this).closest('tr').index();
+        $('input[name="items[' + rowIndex + '][amount]"]').val(quantity); // Cập nhật giá trị amount trong form
 
         // Cập nhật tổng số tiền
         updateTotalAmount();
@@ -31,7 +38,6 @@ $(document).ready(function () {
 
         $('#total-amount').text(totalAmount.toLocaleString() + ' VNĐ');
     }
-
 });
 
 function confirmCheckout() {
@@ -51,4 +57,3 @@ function confirmCheckout() {
         }
     });
 }
-

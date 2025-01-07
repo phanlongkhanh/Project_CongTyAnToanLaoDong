@@ -48,7 +48,7 @@
                 </a>
 
                 <!-- Đơn hàng -->
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
+                <a href="{{route('index-order')}}" class="list-group-item list-group-item-action bg-dark text-white text-nowrap">
                     <i class="fas fa-box"></i> Đơn hàng
                 </a>
 
