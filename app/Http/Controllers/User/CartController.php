@@ -54,12 +54,15 @@ class CartController extends Controller
         return response()->json(['success' => 'Sản phẩm đã được thêm vào giỏ hàng.']);
     }
 
-    public function destroy($id)
+    public function removeFromCart($id)
     {
-        $carts = Cart::findOrFail($id);
+        $cartItem = Cart::find($id);
 
-        $carts->delete();
+        if ($cartItem && $cartItem->id_user == auth()->id()) {
+            $cartItem->delete();
+            return response()->json(['success' => 'Sản phẩm đã được xóa khỏi giỏ hàng.']);
+        }
 
-        return redirect()->route('index-carts')->with('success', 'sản phẩm đã được xóa thành công!');
+        return response()->json(['error' => 'Không tìm thấy sản phẩm trong giỏ hàng.'], 404);
     }
 }

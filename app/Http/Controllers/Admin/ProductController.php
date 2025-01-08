@@ -75,8 +75,10 @@ class ProductController extends Controller
         $categories = Category::all();
         $producttypes = ProductType::all();
         $users = Auth::check() ? Auth::user()->name : null;
+        $list_images = ListImage::where('id_product', $products->id)->get(); 
 
-        return view('Admin.product.update', compact('users', 'products', 'categories', 'producttypes'));
+
+        return view('Admin.product.update', compact('users', 'products', 'categories', 'producttypes','list_images'));
     }
 
     public function destroy($id)

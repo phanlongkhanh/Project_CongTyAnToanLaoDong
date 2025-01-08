@@ -25,7 +25,7 @@ class UserProductController extends Controller
     {
         $category_posts = CategoryPost::all();
         $categories = Category::all();
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'desc')->paginate(6);
         $producttypes = ProductType::all();
         $carts = Cart::where('id_user', Auth::id())->paginate(5);
         $count_carts = Cart::where('id_user', Auth::id())->count();

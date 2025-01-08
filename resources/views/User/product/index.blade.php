@@ -154,10 +154,36 @@
                         @endif
                     @endforeach
                 </div>
-            </div>
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item {{ $products->onFirstPage() ? 'disabled' : '' }}">
+                                <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
 
+                            @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                                <li class="page-item {{ $page == $products->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endforeach
+
+                            <li class="page-item {{ $products->hasMorePages() ? '' : 'disabled' }}">
+                                <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
+    
+
+    <!-- Phân trang -->
+
 
 @endsection
 
@@ -217,4 +243,3 @@
             });
     }
 </script>
-

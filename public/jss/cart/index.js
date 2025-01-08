@@ -42,13 +42,13 @@ $(document).ready(function () {
 
 function confirmCheckout() {
     Swal.fire({
-        title: 'Bạn có chắc chắn muốn thanh toán?',
-        text: "Sau khi thanh toán, đơn hàng sẽ được xử lý.",
+        title: 'Bạn có chắc chắn muốn đặt hàng?',
+        text: "Sau khi đặt hàng, đơn hàng sẽ được xử lý.",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Thanh Toán',
+        confirmButtonText: 'Đặt Hàng',
         cancelButtonText: 'Hủy'
     }).then((result) => {
         if (result.isConfirmed) {

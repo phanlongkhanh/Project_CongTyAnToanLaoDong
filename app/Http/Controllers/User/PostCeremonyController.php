@@ -36,6 +36,6 @@ class PostCeremonyController extends Controller
         $carts = Cart::where('id_user', Auth::id())->paginate(5);
         $count_carts = Cart::where('id_user', Auth::id())->count();
         $users = Auth::user();
-        return view('User.post.ceremony.view', compact('posts', 'category_posts',' count_carts','carts','users'));
+        return view('User.post.ceremony.view', compact('posts', 'category_posts','count_carts','carts','users'));
     }
 }

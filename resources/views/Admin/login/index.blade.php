@@ -15,7 +15,6 @@
         <source src="{{ asset('video/video.mp4') }}" type="video/mp4">
     </video>
 
-    <!-- Login Form -->
     <div class="login-container">
         <h2 class="text-center text-white mb-4">Login</h2>
         @if (session('error'))
@@ -50,6 +49,10 @@
             </div>
         </form>
     </div>
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

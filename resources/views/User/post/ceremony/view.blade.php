@@ -15,7 +15,7 @@
 
 
     <div class="row">
-        <div class="col-10">
+        <div class="col-md-12">
             @isset($posts)
                 <div class=" border border-solid-2">
 
@@ -34,8 +34,6 @@
                 </div>
             @endisset
         </div>
-        <div class="col-2">
-            Nội Dung Cần Code
-        </div>
+      
     </div>
 @endsection
