@@ -24,12 +24,18 @@
                         <tr>
                             <td style="line-height:30px">
                                 <ul>
-                                    <li>Họ Tên: {{ $item->user->name }} </li>
-                                    <li>Email: {{ $item->user->email }} </li>
-                                    <li>Số Điện Thoại: {{ $item->user->phone }} </li>
-
+                                    @if ($item->user->id_role == 1)
+                                        <li>Họ Tên: <span class="text-danger">{{ $item->user->name }}</span></li>
+                                        <li>Email: {{ $item->user->email }} </li>
+                                        <li>Số Điện Thoại: {{ $item->user->phone }} </li>
+                                    @else
+                                        <li>Họ Tên: <span class="text-primary">{{ $item->user->name }}</span></li>
+                                        <li>Email: {{ $item->user->email }} </li>
+                                        <li>Số Điện Thoại: {{ $item->user->phone }} </li>
+                                    @endif
                                 </ul>
                             </td>
+
                             <td style="line-height:30px">
                                 <ul>
                                     <li>Tên SP: {{ Str::limit($item->name, 10) }} </li>
@@ -37,7 +43,8 @@
                                     <li>Giá Tiền: {{ number_format($item->price) }} VNĐ </li>
                                 </ul>
                             </td>
-                            <td style="line-height:100px" class="text-center">{{ number_format($item->total_price) }} VNĐ</td>
+                            <td style="line-height:100px" class="text-center">{{ number_format($item->total_price) }} VNĐ
+                            </td>
 
                             <!-- Cải thiện hiển thị trạng thái Phê Duyệt -->
                             <td style="line-height:100px" class="text-center">
@@ -58,7 +65,7 @@
                             </td>
 
                             <!-- Thêm nút Chi Tiết Đơn Hàng -->
-                            <td style="line-height:100px"  class="text-center">
+                            <td style="line-height:100px" class="text-center">
                                 <a href="#" class="btn btn-info btn-sm">Xem Chi Tiết</a>
                             </td>
                         </tr>

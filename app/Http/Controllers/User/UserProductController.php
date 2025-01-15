@@ -25,10 +25,10 @@ class UserProductController extends Controller
     {
         $category_posts = CategoryPost::all();
         $categories = Category::all();
-        $products = Product::all();
+        $products = Product::orderBy('created_at', 'desc')->paginate(6);
         $producttypes = ProductType::all();
-        $carts = Cart::paginate(5);
-        $count_carts = Cart::count();
+        $carts = Cart::where('id_user', Auth::id())->paginate(5);
+        $count_carts = Cart::where('id_user', Auth::id())->count();
         $users = Auth::user();
         return view('User.product.index', compact('count_carts','category_posts', 'products', 'categories', 'producttypes','carts','users'));
     }
@@ -43,8 +43,8 @@ class UserProductController extends Controller
         }
         $users = Auth::user();
         $products = Product::findOrFail($id);
-        $count_carts = Cart::count();
-        $carts = Cart::paginate(5);
+        $carts = Cart::where('id_user', Auth::id())->paginate(5);
+        $count_carts = Cart::where('id_user', Auth::id())->count();
         $users = Auth::check() ? Auth::user()->name : null;
 
         if (!$products) {

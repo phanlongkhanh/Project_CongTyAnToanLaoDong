@@ -8,9 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/breadcrumb/breadcrumb.css') }}">
     <link rel="stylesheet" href="{{ asset('css/product/product1.css') }}">
-
-
-
     <div class="breadcrumb">
         <a href="/">Trang chủ</a>
         <span>/</span>
@@ -154,10 +151,36 @@
                         @endif
                     @endforeach
                 </div>
-            </div>
+                <div class="d-flex justify-content-center">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item {{ $products->onFirstPage() ? 'disabled' : '' }}">
+                                <a class="page-link" href="{{ $products->previousPageUrl() }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
 
+                            @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                                <li class="page-item {{ $page == $products->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                </li>
+                            @endforeach
+
+                            <li class="page-item {{ $products->hasMorePages() ? '' : 'disabled' }}">
+                                <a class="page-link" href="{{ $products->nextPageUrl() }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
+    
+
+    <!-- Phân trang -->
+
 
 @endsection
 
@@ -205,7 +228,9 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    Swal.fire('Thành công!', data.success, 'success');
+                    Swal.fire('Thành công!', data.success, 'success').then(() => {
+                        location.reload();
+                    });
                 } else {
                     Swal.fire('Lỗi!', data.error, 'error');
                 }

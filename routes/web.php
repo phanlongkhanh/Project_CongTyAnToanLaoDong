@@ -51,8 +51,9 @@ Route::prefix('giohang')->group(function () {
     Route::get('/', [CartController::class, 'index'])->name('index-cart');
     Route::post('/add', [CartController::class, 'addToCart'])->name('add-to-cart');
     Route::get('/api/count-carts', [CartController::class, 'countCarts'])->name('count-carts');
-
 });
+
+
 
 Route::prefix('order')->group(function () {
     Route::get('/', [AdminOrderController::class, 'index'])->name('index-order');
@@ -60,7 +61,8 @@ Route::prefix('order')->group(function () {
 
 
 Route::prefix('dathang')->group(function () {
-    Route::post('/place-order', [OrderController::class, 'store'])->name('place-order');
+    Route::post('/add', [OrderController::class, 'store'])->name('place-order');
+    Route::delete('/cart/{id}', [CartController::class, 'removeFromCart'])->name('destroy-carts');
 });
 
 
@@ -112,7 +114,7 @@ Route::prefix('post')->group(function () {
     Route::get('active/{id}', [PostController::class, 'Active'])->name('active-post');
     Route::get('/{id}', [PostController::class, 'edit'])->name('edit-post');
     Route::put('/{id}', [PostController::class, 'update'])->name('update-post');
-Route::delete('/{id}', [PostController::class, 'destroy'])->name('destroy-post');
+    Route::delete('/{id}', [PostController::class, 'destroy'])->name('destroy-post');
 });
 
 Route::prefix('tintuc')->group(function () {
@@ -140,7 +142,7 @@ Route::prefix('category-post')->group(function () {
 
 Route::prefix('category-product')->group(function () {
     Route::get('/', [CategoryProductController::class, 'index'])->name('index-category-product');
-    Route::get('/create', action:[CategoryProductController::class, 'create'])->name('create-category-product');
+    Route::get('/create', action: [CategoryProductController::class, 'create'])->name('create-category-product');
     Route::post('/add', action: [CategoryProductController::class, 'store'])->name('store-category-product');
     Route::delete('/{id}', [CategoryProductController::class, 'destroy'])->name('destroy-category-product');
     Route::get('/{id}', [CategoryProductController::class, 'edit'])->name('edit-category-product');

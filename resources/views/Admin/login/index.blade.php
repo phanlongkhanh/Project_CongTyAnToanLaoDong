@@ -15,7 +15,6 @@
         <source src="{{ asset('video/video.mp4') }}" type="video/mp4">
     </video>
 
-    <!-- Login Form -->
     <div class="login-container">
         <h2 class="text-center text-white mb-4">Login</h2>
         @if (session('error'))
@@ -34,7 +33,7 @@
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Tài Khoản</label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <input type="text" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Mật Khẩu</label>
@@ -50,6 +49,10 @@
             </div>
         </form>
     </div>
+
+
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

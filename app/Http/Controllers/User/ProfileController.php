@@ -22,8 +22,8 @@ class ProfileController extends Controller
             return redirect()->route('index-login')->with('error', 'Vui lòng đăng nhập để tiếp tục.');
         }
 
-        $carts = Cart::paginate(5);
-        $count_carts = Cart::count();
+        $carts = Cart::where('id_user', Auth::id())->paginate(5);
+        $count_carts = Cart::where('id_user', Auth::id())->count();
         $users = Auth::user();
         return view('User.profile.index', compact('users', 'carts', 'count_carts'));
     }

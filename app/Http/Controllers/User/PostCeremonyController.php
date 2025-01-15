@@ -19,8 +19,8 @@ class PostCeremonyController extends Controller
         } else {
             $posts = collect();
         }
-        $count_carts = Cart::count();
-        $carts = Cart::paginate(5);
+        $carts = Cart::where('id_user', Auth::id())->paginate(5);
+        $count_carts = Cart::where('id_user', Auth::id())->count();
         $category_posts = CategoryPost::all();
         $users = Auth::user();
         return view('User.post.ceremony.index', compact('posts', 'category_posts','count_carts','carts','users'));
@@ -33,9 +33,9 @@ class PostCeremonyController extends Controller
             return redirect()->route('index-post-ceremony')->with('error', 'Không tìm thấy bài viết với slug này.');
         }
         $category_posts = CategoryPost::all();
-        $carts = Cart::paginate(5);
-        $count_carts = Cart::count();
+        $carts = Cart::where('id_user', Auth::id())->paginate(5);
+        $count_carts = Cart::where('id_user', Auth::id())->count();
         $users = Auth::user();
-        return view('User.post.ceremony.view', compact('posts', 'category_posts',' count_carts','carts','users'));
+        return view('User.post.ceremony.view', compact('posts', 'category_posts','count_carts','carts','users'));
     }
 }

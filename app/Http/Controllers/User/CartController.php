@@ -13,12 +13,14 @@ class CartController extends Controller
 {
     public function index()
     {
-        $carts = Cart::paginate(5);
-        $count_carts = Cart::count();
-        $users = Auth::user();
-        return view('User.cart.index', compact('carts', 'count_carts','users'));
-    }
+        $carts = Cart::where('id_user', Auth::id())->paginate(5);
 
+        $count_carts = Cart::where('id_user', Auth::id())->count();
+
+        $users = Auth::user();
+
+        return view('User.cart.index', compact('carts', 'count_carts', 'users'));
+    }
     //hàm thêm vào giỏ hàng
     public function addToCart(Request $request)
     {
@@ -50,5 +52,17 @@ class CartController extends Controller
         }
 
         return response()->json(['success' => 'Sản phẩm đã được thêm vào giỏ hàng.']);
+    }
+
+    public function removeFromCart($id)
+    {
+        $cartItem = Cart::find($id);
+
+        if ($cartItem && $cartItem->id_user == auth()->id()) {
+            $cartItem->delete();
+            return response()->json(['success' => 'Sản phẩm đã được xóa khỏi giỏ hàng.']);
+        }
+
+        return response()->json(['error' => 'Không tìm thấy sản phẩm trong giỏ hàng.'], 404);
     }
 }

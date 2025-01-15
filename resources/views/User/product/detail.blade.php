@@ -15,8 +15,8 @@
 
     <div class="container mt-4">
         <div class="row">
-            <div class="col-md-4 border rounded shadow-lg">
-                <div id="productImages" class="carousel slide" data-bs-ride="carousel">
+            <div class="col-md-4 ">
+                <div id="productImages" class="carousel slide border rounded shadow-lg p-3 " data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="{{ asset('images/' . $products->image) }}" class="d-block w-100" alt="Product Image">
@@ -30,12 +30,12 @@
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#productImages"
                         data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="carousel-control-prev-icon bg-primary border rounded shadow-lg" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
                     <button class="carousel-control-next " type="button" data-bs-target="#productImages"
                         data-bs-slide="next">
-                        <span class="carousel-control-next-icon " aria-hidden="true"></span>
+                        <span class="carousel-control-next-icon bg-primary border rounded shadow-lg" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
                     <div class="mt-3">
@@ -95,6 +95,7 @@
                     </button>
                 </div>
             </div>
+          
         </div>
 
         <!-- Reviews Section -->

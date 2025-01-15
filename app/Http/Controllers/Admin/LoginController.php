@@ -27,11 +27,11 @@ class LoginController extends Controller
     public function Login(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'email' => 'required|email',
             'password' => 'required|string',
         ]);
 
-        $credentials = $request->only('name', 'password');
+        $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
@@ -40,7 +40,8 @@ class LoginController extends Controller
 
         return redirect()->back()
             ->withInput()
-            ->withErrors(['name' => 'Tài khoản hoặc mật khẩu không chính xác']);
+            ->withErrors(['email' => 'Tài khoản hoặc mật khẩu không chính xác']);
     }
+
 
 }
