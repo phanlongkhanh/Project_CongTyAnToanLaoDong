@@ -18,9 +18,8 @@
         <div class="col-md-12">
             @isset($posts)
                 <div class=" border border-solid-2">
-
                     <h1 class="text-danger text-center">{{ $posts->title }}</h1>
-                    <div class="text-center"><img src="{{ asset('images/' . $posts->image) }}" height="250" width="60%"
+                    <div class="text-center"><img src="{{ asset('images/' . $posts->image) }}" height="auto" width="60%"
                             alt="{{ $posts->title }}"></div>
                     <div class="container">
                         <div class="container-fluid">

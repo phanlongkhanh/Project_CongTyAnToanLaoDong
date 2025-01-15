@@ -60,11 +60,13 @@
             </a>
             <div class="cart-dropdown">
                 <ul>
-                    <p class="text-danger">Sản Phẩm Mới Thêm:</p>
+                    <p class="text-danger"><h4 style="color: #de2e0a; text-align: center; font-family: 'Allura', sans-serif; font-weight: 400; font-style: normal;"
+                        class="vc_custom_heading vc_custom_1692147398253">
+                        Sản Phẩm Mới Thêm
+                    </h4></p>
                     <hr>
                     @foreach ($carts as $item)
                         @if ($item->product)
-                            <!-- Kiểm tra xem products có tồn tại không -->
                             <li class="cart-item">
                                 <img src="{{ asset('images/' . $item->product->image) }}"
                                     alt="{{ $item->product->name }}">
@@ -75,7 +77,7 @@
                             </li>
                             <hr>
                         @else
-                            <p>Product not available</p> <!-- Hoặc xử lý khi không có sản phẩm -->
+                            <p>Product not available</p> 
                         @endif
                     @endforeach
                 </ul>
